@@ -1,0 +1,63 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url 'https://jitpack.io' }
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+
+dependencies {
+
+   /* compile 'com.github.conanchen.guoi-cloud-apis:org8n-grpc-java:master-SNAPSHOT'
+    compile 'com.github.conanchen.guoi-cloud-apis:person-grpc-java:master-SNAPSHOT'*/
+
+    compile("org.lognet:grpc-spring-boot-starter:$GRPC_STARTER_VERSION") {
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
+
+    compile("com.graphql-java:graphql-java-tools:4.3.0") {
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
+    compile("com.graphql-java:graphql-spring-boot-starter:3.10.0") {
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
+    compile("com.graphql-java:graphiql-spring-boot-starter:3.10.0") {
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
+
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
+    compile("org.springframework.boot:spring-boot-starter-actuator") {
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb") {
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
+    compile("org.springframework.boot:spring-boot-devtools") {
+//        优点：简单，支持Spring-boot项目，支持成员级别的修改热部署。
+//        缺点：只支持spring-boot项目。? 貌似不起作用？
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:1.5.9.RELEASE") }
+}
+
+
+project.logger.lifecycle("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+project.logger.lifecycle("~~~~~~~~~~~~~~~~~GUOI STATION BUILD DONE!~~~~~~~~~~~~~~~~~~");
+project.logger.lifecycle("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");

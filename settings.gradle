@@ -1,0 +1,2 @@
+rootProject.name = 'guoi-gateway-gis'
+include 'gis-graphql'
