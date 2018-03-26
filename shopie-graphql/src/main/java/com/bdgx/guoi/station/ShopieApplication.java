@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class GeoApplication {
+public class ShopieApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GeoApplication.class, args);
+        SpringApplication.run(ShopieApplication.class, args);
     }
 
     @Bean
