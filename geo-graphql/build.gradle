@@ -4,8 +4,8 @@ plugins {
     id 'org.springframework.boot'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+group = 'guoi-gateway-geo-graphql'
+version = '0.0.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -20,8 +20,7 @@ configurations.all {
 
 dependencies {
 
-   /* compile 'com.github.conanchen.guoi-cloud-apis:org8n-grpc-java:master-SNAPSHOT'
-    compile 'com.github.conanchen.guoi-cloud-apis:person-grpc-java:master-SNAPSHOT'*/
+    compile 'com.github.conanchen.guoi-micro-apis:party-org8n-grpc-java:master-SNAPSHOT'
 
     compile("org.lognet:grpc-spring-boot-starter:$GRPC_STARTER_VERSION") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
@@ -53,11 +52,11 @@ dependencies {
     }
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
 dependencyManagement {
-    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:1.5.9.RELEASE") }
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:$springBootVersion") }
 }
 
-
 project.logger.lifecycle("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-project.logger.lifecycle("~~~~~~~~~~~~~~~~~GUOI STATION BUILD DONE!~~~~~~~~~~~~~~~~~~");
+project.logger.lifecycle("~~~~~~~~~~~~~~~~~STATION-GRAPHQL BUILD DONE!~~~~~~~~~~~~~~~~~~");
 project.logger.lifecycle("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
