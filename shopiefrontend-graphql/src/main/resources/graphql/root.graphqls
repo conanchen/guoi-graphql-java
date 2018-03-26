@@ -1,0 +1,305 @@
+
+# The Root Query for the application
+type Query {
+  # A list of catalog.
+  catalogs(
+
+    # Returns the elements in the list that come after the specified global ID.
+    after: String
+
+    # Returns the elements in the list that come before the specified global ID.
+    before: String
+
+    # Returns the first _n_ elements from the list.
+    first: Int
+
+    # Returns the last _n_ elements from the list.
+    last: Int
+
+    # Ordering options for repositories returned from the connection
+    # orderBy: RepositoryOrder
+
+  ): CatalogConnection!
+
+  # Lookup a person by phoneno of mobile/tel.
+  person(
+    # The person's phoneno.
+    phoneno: String!
+  ): Person
+
+  # The currently authenticated user.
+  viewer: User!
+}
+
+# The Root Mutation for the application
+type Mutation {
+    createPerson(firstName: String, lastName: String, email: String!):Person!
+}
+
+# A catalog represents a grouping of products that a shop owner can create to
+# organize them or make their shops easier to browse.
+type Catalog implements Node {
+  # Globally unique identifier.
+  id: ID!
+
+  # The catalog’s name. Limit of 255 characters.
+  title: String!
+
+  # Parent Catalog
+  parent: Catalog
+
+  # Stripped description of the catalog, single line with HTML tags removed.
+#  description(
+#    # Truncates string after the given length.
+#    truncateAt: Int
+#  ): String!
+
+  # The description of the catalog, complete with HTML formatting.
+  # descriptionHtml: HTML!
+
+  # Image associated with the catalog.
+#  image(
+#    # Image width in pixels between 1 and 2048
+#    maxWidth: Int
+#
+#    # Image height in pixels between 1 and 2048
+#    maxHeight: Int
+#
+#    # If specified, crop the image keeping the specified region
+#    crop: CropRegion
+#
+#    # Image size multiplier retina displays. Must be between 1 and 3
+#    scale: Int = 1
+#  ): Image
+#
+#  # List of products in the catalog.
+#  products(
+#    # Returns the elements in the list that come after the specified global ID.
+#    after: String
+#
+#    # Returns the elements in the list that come before the specified global ID.
+#    before: String
+#
+#    # Returns the first _n_ elements from the list.
+#    first: Int
+#
+#    # Returns the last _n_ elements from the list.
+#    last: Int
+#
+#    reverse: Boolean = false
+#
+#    sortKey: ProductCatalogSortKeys = CATALOG_DEFAULT
+#  ): ProductConnection!
+#
+
+  # The date and time when the catalog was last modified.
+  # updatedAt: DateTime!
+}
+
+type CatalogConnection {
+  # A list of edges.
+  edges: [CatalogEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+}
+
+type CatalogEdge {
+  # A cursor for use in pagination.
+  cursor: String!
+
+  # The item at the end of CatalogEdge.
+  node: Catalog!
+}
+
+## A product represents an individual item for sale in a Shopify store. Products are often physical, but they don't have to be.
+## For example, a digital download (such as a movie, music or ebook file) also
+## qualifies as a product, as do services (such as equipment rental, work for hire,
+## customization of another product or an extended warranty).
+#type Product implements Node {
+#  # Globally unique identifier.
+#  id: ID!
+#
+#  # List of catalogs a product belongs to.
+#  catalogs(first: Int, after: String, last: Int, before: String, reverse: Boolean = false): CatalogConnection!
+#
+#  # The date and time when the product was created.
+#  # createdAt: DateTime!
+#
+#  # Stripped description of the product, single line with HTML tags removed.
+#  description(
+#    # Truncates string after the given length.
+#    truncateAt: Int
+#  ): String!
+#
+#  # The description of the product, complete with HTML formatting.
+#  descriptionHtml: HTML!
+#
+#  # A human-friendly unique string for the Product automatically generated from its title.
+#  # They are used by the Liquid templating language to refer to objects.
+#  handle: String!
+#
+#  # List of images associated with the product.
+#  images(
+#    first: Int
+#    after: String
+#    last: Int
+#    before: String
+#    reverse: Boolean = false
+#    # sortKey: ProductImageSortKeys = POSITION
+#
+#    # Image width in pixels between 1 and 2048
+#    maxWidth: Int
+#
+#    # Image height in pixels between 1 and 2048
+#    maxHeight: Int
+#
+#    # If specified, crop the image keeping the specified region
+#    # crop: CropRegion
+#
+#    # Image size multiplier retina displays. Must be between 1 and 3
+#    scale: Int = 1
+#  ): ImageConnection!
+#
+#  # A categorization that a product can be tagged with, commonly used for filtering and searching.
+#  productType: String!
+#
+#  # The date and time when the product was published to the channel.
+#  # publishedAt: DateTime!
+#
+#  # A categorization that a product can be tagged with, commonly used for filtering and searching.
+#  # Each comma-separated tag has a character limit of 255.
+#  tags: [String!]!
+#
+#  # The product’s title.
+#  title: String!
+#
+#  # The date and time when the product was last modified.
+#  # updatedAt: DateTime!
+#
+#  # Find a product’s variant based on its selected options.
+#  # This is useful for converting a user’s selection of product options into a single matching variant.
+#  # If there is not a variant for the selected options, `null` will be returned.
+#  # variantBySelectedOptions(selectedOptions: [SelectedOptionInput!]!): ProductVariant
+#
+#  # List of the product’s variants.
+#  # variants(first: Int, after: String, last: Int, before: String, reverse: Boolean = false, sortKey: ProductVariantSortKeys = POSITION): ProductVariantConnection!
+#
+#  # The product’s vendor name.
+#  vendor: String!
+#}
+#
+#type ImageConnection {
+#  # A list of edges.
+#  edges: [ImageEdge!]!
+#
+#  # Information to aid in pagination.
+#  pageInfo: PageInfo!
+#}
+#
+#type ImageEdge {
+#  # A cursor for use in pagination.
+#  cursor: String!
+#
+#  # The item at the end of ImageEdge.
+#  node: Image!
+#}
+#
+#type ProductConnection {
+#  # A list of edges.
+#  edges: [ProductEdge!]!
+#
+#  # Information to aid in pagination.
+#  pageInfo: PageInfo!
+#}
+#
+#type ProductEdge {
+#  # A cursor for use in pagination.
+#  cursor: String!
+#
+#  # The item at the end of ProductEdge.
+#  node: Product!
+#}
+
+# A user is an individual's account on Guoi that owns a shop or can make orders for calling persons.
+type User implements Node{
+  # A URL pointing to the user's public avatar.
+  #  avatarUrl(
+  #    # The size of the resulting square image.
+  #    size: Int
+  #  ): URI!
+
+  # Identifies the date and time when the object was created.
+  # createdAt: DateTime!
+
+  id: ID!
+
+  # The username used to login.
+  login: String!
+
+  # The user's public profile name.
+  name: String
+
+  # The user's publicly visible profile email.
+  email: String!
+
+
+  # Find an organization by its login that the user belongs to.
+  #  organization(
+  #    # The login of the organization to find.
+  #    login: String!
+  #  ): Organization
+
+}
+
+
+# A person is an individual on Guoi.
+type Person implements Node{
+
+  id: ID!
+
+  # The person's publicly visible profile name.
+  firstName: String!
+  lastName: String!
+
+  # The person's publicly visible profile email.
+  email: String!
+
+  # Identifies the date and time when the object was created.
+  # createdAt: DateTime!
+}
+
+# An object with an ID.
+interface Node {
+  # ID of the object.
+  id: ID!
+}
+
+
+# Information about pagination in a connection.
+type PageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+}
+
+
+## The set of valid sort keys for the products query.
+#enum ProductCatalogSortKeys {
+#  MANUAL
+#  BEST_SELLING
+#  TITLE
+#  PRICE
+#  CREATED
+#  CATALOG_DEFAULT
+#  ID
+#  RELEVANCE
+#}

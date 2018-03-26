@@ -1,2 +1,2 @@
-rootProject.name = 'guoi-gateway-shopie'
-include 'shopie-graphql'
+rootProject.name = 'guoi-gateway-shopiefrontend'
+include 'shopiefrontend-graphql'
