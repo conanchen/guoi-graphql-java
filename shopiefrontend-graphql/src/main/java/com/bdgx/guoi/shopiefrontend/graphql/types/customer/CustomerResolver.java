@@ -8,6 +8,7 @@ import com.bdgx.guoi.shopiefrontend.graphql.types.cart.CartEdge;
 import com.bdgx.guoi.shopiefrontend.graphql.types.order.Order;
 import com.bdgx.guoi.shopiefrontend.graphql.types.order.OrderConnection;
 import com.bdgx.guoi.shopiefrontend.graphql.types.order.OrderEdge;
+import com.bdgx.guoi.shopiefrontend.graphql.types.shop.Shop;
 import com.coxautodev.graphql.tools.GraphQLResolver;
 
 import java.util.ArrayList;
@@ -64,17 +65,18 @@ public class CustomerResolver implements GraphQLResolver<Customer> {
 //            #  - `processed_at`
             String query
     ){
-       Order o1= new Order("orderid1", CurrencyCode.CNY,"customerLocale",
+        Shop shop = new Shop("id001","shopname","descriptoin");
+       Order o1= new Order("orderid1",shop, CurrencyCode.CNY,"customerLocale",
                 "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",
                 new MailingAddress(),Float.valueOf(11.2f),Float.valueOf(112.0f),
                 Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
 
-       Order o2= new Order("orderid2", CurrencyCode.CNY,"customerLocale",
+       Order o2= new Order("orderid2",shop, CurrencyCode.CNY,"customerLocale",
                 "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",
                 new MailingAddress(),Float.valueOf(11.2f),Float.valueOf(112.0f),
                 Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
 
-       Order o3= new Order("orderid3", CurrencyCode.CNY,"customerLocale",
+       Order o3= new Order("orderid3",shop, CurrencyCode.CNY,"customerLocale",
                 "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",
                 new MailingAddress(),Float.valueOf(11.2f),Float.valueOf(112.0f),
                 Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
@@ -109,20 +111,11 @@ public class CustomerResolver implements GraphQLResolver<Customer> {
 //            #  - `processed_at`
             String query
     ){
-       Cart o1= new Cart("cartid1", CurrencyCode.CNY,"customerLocale",
-                "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",
-                new MailingAddress(),Float.valueOf(11.2f),Float.valueOf(112.0f),
-                Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
+       Cart o1= new Cart(new Shop("shopid1","shopid1name","shopdescription"),Float.valueOf(22.0f));
+       Cart o2= new Cart(new Shop("shopid2","shopid2name","shopdescription"),Float.valueOf(22.0f));
+       Cart o3= new Cart(new Shop("shopid3","shopid3name","shopdescription"),Float.valueOf(22.0f));
 
-        Cart o2= new Cart("cartid2", CurrencyCode.CNY,"customerLocale",
-                "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",
-                new MailingAddress(),Float.valueOf(11.2f),Float.valueOf(112.0f),
-                Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
 
-        Cart o3= new Cart("cartid3", CurrencyCode.CNY,"customerLocale",
-                "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",
-                new MailingAddress(),Float.valueOf(11.2f),Float.valueOf(112.0f),
-                Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
 
         return new CartConnection(new ArrayList<CartEdge>(){{
             add(new CartEdge("cursor",o1));

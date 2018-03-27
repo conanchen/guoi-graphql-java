@@ -2,12 +2,15 @@ package com.bdgx.guoi.shopiefrontend.graphql.types.order;
 
 import com.bdgx.guoi.graphql.types.common.CurrencyCode;
 import com.bdgx.guoi.shopiefrontend.graphql.types.customer.MailingAddress;
+import com.bdgx.guoi.shopiefrontend.graphql.types.shop.Shop;
 
 public class Order {
     //  # Globally unique identifier.
     private final String id;//            id: ID!
-    //
-//            # The code of the currency used for the payment.
+//  # The Shop from which products was ordered
+    private final Shop shop;//    shop: Shop!
+
+    //            # The code of the currency used for the payment.
     private final CurrencyCode currencyCode;//    currencyCode: CurrencyCode!
     //
 //            # The locale code in which this specific order happened.
@@ -51,8 +54,9 @@ public class Order {
 //            # The total cost of taxes.
     private final Float totalTax;//            totalTax: Money
 
-    public Order(String id, CurrencyCode currencyCode, String customerLocale, String email, Integer orderNumber, String phone, MailingAddress shippingAddress, Float subtotalPrice, Float totalPrice, Float totalRefunded, Float totalShippingPrice, Float totalTax) {
+    public Order(String id, Shop shop,CurrencyCode currencyCode, String customerLocale, String email, Integer orderNumber, String phone, MailingAddress shippingAddress, Float subtotalPrice, Float totalPrice, Float totalRefunded, Float totalShippingPrice, Float totalTax) {
         this.id = id;
+        this.shop = shop;
         this.currencyCode = currencyCode;
         this.customerLocale = customerLocale;
         this.email = email;

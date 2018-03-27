@@ -21,6 +21,9 @@ type Order implements Node {
   # Globally unique identifier.
   id: ID!
 
+  # The Shop from which products was ordered
+  shop: Shop!
+
   # The code of the currency used for the payment.
   currencyCode: CurrencyCode!
 
