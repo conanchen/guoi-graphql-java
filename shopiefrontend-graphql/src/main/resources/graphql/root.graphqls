@@ -21,11 +21,11 @@ type Query {
 
   ): CatalogConnection!
 
-  # Lookup a person by phoneno of mobile/tel.
-  person(
+  # Lookup a customer by phoneno
+  customer(
     # The person's phoneno.
     phoneno: String!
-  ): Person
+  ): Customer
 
   # The currently authenticated user.
   viewer: User!
@@ -33,7 +33,7 @@ type Query {
 
 # The Root Mutation for the application
 type Mutation {
-    createPerson(firstName: String, lastName: String, email: String!):Person!
+    createCustomer(firstName: String, lastName: String, email: String!):Customer!
 }
 
 # A catalog represents a grouping of products that a shop owner can create to
@@ -252,22 +252,6 @@ type User implements Node{
 
 }
 
-
-# A person is an individual on Guoi.
-type Person implements Node{
-
-  id: ID!
-
-  # The person's publicly visible profile name.
-  firstName: String!
-  lastName: String!
-
-  # The person's publicly visible profile email.
-  email: String!
-
-  # Identifies the date and time when the object was created.
-  # createdAt: DateTime!
-}
 
 # An object with an ID.
 interface Node {

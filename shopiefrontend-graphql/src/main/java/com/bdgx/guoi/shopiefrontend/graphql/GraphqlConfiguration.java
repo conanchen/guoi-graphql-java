@@ -1,6 +1,7 @@
 package com.bdgx.guoi.shopiefrontend.graphql;
 
 import com.bdgx.guoi.shopiefrontend.graphql.type.*;
+import com.bdgx.guoi.shopiefrontend.graphql.type.customer.CustomerResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -28,8 +29,8 @@ public class GraphqlConfiguration {
     }
 
     @Bean
-    public PersonResolver personResolver() {
-        return new PersonResolver();
+    public CustomerResolver personResolver() {
+        return new CustomerResolver();
     }
 
     @Bean

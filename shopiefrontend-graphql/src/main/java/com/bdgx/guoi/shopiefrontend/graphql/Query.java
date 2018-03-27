@@ -1,6 +1,8 @@
 package com.bdgx.guoi.shopiefrontend.graphql;
 
 import com.bdgx.guoi.shopiefrontend.graphql.type.*;
+import com.bdgx.guoi.shopiefrontend.graphql.type.customer.Customer;
+import com.bdgx.guoi.shopiefrontend.graphql.type.customer.MailingAddress;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
@@ -14,8 +16,9 @@ public class Query implements GraphQLQueryResolver {
 
     }
 
-    public Person person(String phoneno) {
-        return new Person("personid1", "conan", "chen", "conan8chan@yahoo.com");
+    public Customer customer(String phoneno) {
+        return new Customer("customerid1", Boolean.FALSE, new MailingAddress(), "conan",
+                "conan8chan@yahoo.com", "conan", "chen","13880996132");
     }
 
     public User viewer() {
@@ -49,6 +52,4 @@ public class Query implements GraphQLQueryResolver {
             add(new CatalogEdge("cursor", catalog3));
         }}, new PageInfo("end", Boolean.FALSE, Boolean.FALSE, "start"));
     }
-
-
 }
