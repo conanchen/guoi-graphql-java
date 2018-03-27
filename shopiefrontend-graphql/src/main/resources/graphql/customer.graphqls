@@ -2,6 +2,9 @@
 # contact information for the customer, saving logged-in customers the trouble of
 # having to provide it at every checkout.
 type Customer implements Node{
+  # A unique identifier for the customer.
+  id: ID!
+
   # Indicates whether the customer has consented to be sent marketing material via email.
   acceptsMarketing: Boolean!
 
@@ -37,25 +40,30 @@ type Customer implements Node{
   # The customer’s first name.
   firstName: String
 
-  # A unique identifier for the customer.
-  id: ID!
-
   # The customer’s last name.
   lastName: String
 
   # The orders associated with the customer.
-#  orders(
-#    first: Int
-#    after: String
-#    last: Int
-#    before: String
-#    reverse: Boolean = false
-#    sortKey: OrderSortKeys = ID
-#
-#    # Supported filter parameters:
-#    #  - `processed_at`
-#    query: String
-#  ): OrderConnection!
+  orders(
+    # Returns the elements in the list that come after the specified global ID.
+    after: String
+
+    # Returns the elements in the list that come before the specified global ID.
+    before: String
+
+    # Returns the first _n_ elements from the list.
+    first: Int
+
+    # Returns the last _n_ elements from the list.
+    last: Int
+
+    reverse: Boolean = false
+    #sortKey: OrderSortKeys = ID
+
+    # Supported filter parameters:
+    #  - `processed_at`
+    query: String
+  ): OrderConnection!
 
   # The customer’s phone number.
   phone: String

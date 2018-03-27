@@ -1,0 +1,31 @@
+
+# A user is an individual's account on Guoi that owns a shop or can make orders for calling persons.
+type User implements Node{
+  # A URL pointing to the user's public avatar.
+  #  avatarUrl(
+  #    # The size of the resulting square image.
+  #    size: Int
+  #  ): URI!
+
+  # Identifies the date and time when the object was created.
+  # createdAt: DateTime!
+
+  id: ID!
+
+  # The username used to login.
+  login: String!
+
+  # The user's public profile name.
+  name: String
+
+  # The user's publicly visible profile email.
+  email: String!
+
+
+  # Find an organization by its login that the user belongs to.
+  #  organization(
+  #    # The login of the organization to find.
+  #    login: String!
+  #  ): Organization
+
+}

@@ -1,13 +1,16 @@
 package com.bdgx.guoi.shopiefrontend.graphql;
 
-import com.bdgx.guoi.shopiefrontend.graphql.type.*;
-import com.bdgx.guoi.shopiefrontend.graphql.type.customer.Customer;
-import com.bdgx.guoi.shopiefrontend.graphql.type.customer.MailingAddress;
+import com.bdgx.guoi.shopiefrontend.graphql.types.*;
+import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.Catalog;
+import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.CatalogConnection;
+import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.CatalogEdge;
+import com.bdgx.guoi.shopiefrontend.graphql.types.customer.Customer;
+import com.bdgx.guoi.shopiefrontend.graphql.types.customer.MailingAddress;
+import com.bdgx.guoi.shopiefrontend.graphql.types.user.User;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @EnableAutoConfiguration
 public class Query implements GraphQLQueryResolver {

@@ -1,7 +1,9 @@
 package com.bdgx.guoi.shopiefrontend.graphql;
 
-import com.bdgx.guoi.shopiefrontend.graphql.type.*;
-import com.bdgx.guoi.shopiefrontend.graphql.type.customer.CustomerResolver;
+import com.bdgx.guoi.shopiefrontend.graphql.types.*;
+import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.*;
+import com.bdgx.guoi.shopiefrontend.graphql.types.customer.CustomerResolver;
+import com.bdgx.guoi.shopiefrontend.graphql.types.user.UserResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
