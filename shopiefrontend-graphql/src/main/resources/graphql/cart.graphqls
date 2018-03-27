@@ -1,0 +1,111 @@
+type CartConnection {
+  # A list of edges.
+  edges: [CartEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+}
+
+type CartEdge {
+  # A cursor for use in pagination.
+  cursor: String!
+
+  # The item at the end of CartEdge.
+  node: Cart!
+}
+
+# An cart is a customer’s completed request to purchase one or more products from
+# a shop. An cart is created when a customer completes the checkout process,
+# during which time they provides an email address, billing address and payment information.
+type Cart implements Node {
+  # Globally unique identifier.
+  id: ID!
+
+  # The code of the currency used for the payment.
+  currencyCode: CurrencyCode!
+
+  # The locale code in which this specific cart happened.
+  customerLocale: String
+
+  # The cart’s URL for a customer.
+  # customerUrl: URL
+
+  # The customer's email address.
+  email: String
+
+  # List of the cart’s line items.
+  lineItems(
+    # Returns the elements in the list that come after the specified global ID.
+    after: String
+
+    # Returns the elements in the list that come before the specified global ID.
+    before: String
+
+    # Returns the first _n_ elements from the list.
+    first: Int
+
+    # Returns the last _n_ elements from the list.
+    last: Int
+
+    reverse: Boolean = false
+  ): CartLineItemConnection!
+
+  # A unique numeric identifier for the cart for use by shop owner and customer.
+  cartNumber: Int!
+
+  # The customer's phone number.
+  phone: String
+
+  # The date and time when the cart was imported.
+  # This value can be set to dates in the past when importing from other systems.
+  # If no value is provided, it will be auto-generated based on current date and time.
+  # processedAt: DateTime!
+
+  # The address to where the cart will be shipped.
+  shippingAddress: MailingAddress
+
+  # Price of the cart before shipping and taxes.
+  subtotalPrice: Money
+
+  # The sum of all the prices of all the items in the cart, taxes and discounts included (must be positive).
+  totalPrice: Money!
+
+  # The total amount that has been refunded.
+  totalRefunded: Money!
+
+  # The total cost of shipping.
+  totalShippingPrice: Money!
+
+  # The total cost of taxes.
+  totalTax: Money
+}
+
+type CartLineItemConnection {
+  # A list of edges.
+  edges: [CartLineItemEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+}
+type CartLineItemEdge {
+  # A cursor for use in pagination.
+  cursor: String!
+
+  # The item at the end of CartLineItemEdge.
+  node: CartLineItem!
+}
+
+# Represents a single line in an cart. There is one line item for each distinct product variant.
+type CartLineItem {
+  # List of custom attributes associated to the line item.
+  customAttributes: [Attribute!]!
+
+  # The number of products variants associated to the line item.
+  quantity: Int!
+
+  # The title of the product combined with title of the variant.
+  title: String!
+
+  # The product object associated to the line item.
+  variant: Product
+}

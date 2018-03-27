@@ -37,29 +37,6 @@ type Mutation {
 }
 
 
-# An object with an ID.
-interface Node {
-  # ID of the object.
-  id: ID!
-}
-
-
-# Information about pagination in a connection.
-type PageInfo {
-  # When paginating forwards, the cursor to continue.
-  endCursor: String
-
-  # When paginating forwards, are there more items?
-  hasNextPage: Boolean!
-
-  # When paginating backwards, are there more items?
-  hasPreviousPage: Boolean!
-
-  # When paginating backwards, the cursor to continue.
-  startCursor: String
-}
-
-
 ## The set of valid sort keys for the products query.
 #enum ProductCatalogSortKeys {
 #  MANUAL
@@ -71,6 +48,3 @@ type PageInfo {
 #  ID
 #  RELEVANCE
 #}
-
-# Date implementation
-scalar DateTime
