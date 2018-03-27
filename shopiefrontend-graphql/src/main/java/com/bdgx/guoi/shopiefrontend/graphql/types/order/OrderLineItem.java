@@ -1,6 +1,7 @@
 package com.bdgx.guoi.shopiefrontend.graphql.types.order;
 
 import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.Product;
+import com.bdgx.guoi.graphql.types.common.Attribute;
 
 import java.util.List;
 

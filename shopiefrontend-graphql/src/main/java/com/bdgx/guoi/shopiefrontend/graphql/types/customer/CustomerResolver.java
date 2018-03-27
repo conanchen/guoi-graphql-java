@@ -1,7 +1,7 @@
 package com.bdgx.guoi.shopiefrontend.graphql.types.customer;
 
+import com.bdgx.guoi.graphql.types.common.CurrencyCode;
 import com.bdgx.guoi.shopiefrontend.graphql.types.PageInfo;
-import com.bdgx.guoi.shopiefrontend.graphql.types.order.CurrencyCode;
 import com.bdgx.guoi.shopiefrontend.graphql.types.order.Order;
 import com.bdgx.guoi.shopiefrontend.graphql.types.order.OrderConnection;
 import com.bdgx.guoi.shopiefrontend.graphql.types.order.OrderEdge;

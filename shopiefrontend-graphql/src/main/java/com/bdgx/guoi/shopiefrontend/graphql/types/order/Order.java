@@ -1,5 +1,6 @@
 package com.bdgx.guoi.shopiefrontend.graphql.types.order;
 
+import com.bdgx.guoi.graphql.types.common.CurrencyCode;
 import com.bdgx.guoi.shopiefrontend.graphql.types.customer.MailingAddress;
 
 public class Order {

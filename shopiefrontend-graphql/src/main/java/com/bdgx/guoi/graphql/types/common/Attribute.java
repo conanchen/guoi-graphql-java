@@ -1,4 +1,4 @@
-package com.bdgx.guoi.shopiefrontend.graphql.types.order;
+package com.bdgx.guoi.graphql.types.common;
 
 public class Attribute {
     //      # Key or name of the attribute.
