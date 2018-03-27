@@ -33,6 +33,23 @@ public class GraphqlConfiguration {
     }
 
     @Bean
+    public ProductConnectionResolver productConnectionResolver() {
+        return new ProductConnectionResolver();
+    }
+
+
+    @Bean
+    public ProductEdgeResolver productEdgeResolver() {
+        return new ProductEdgeResolver();
+    }
+
+
+    @Bean
+    public ProductResolver productResolver() {
+        return new ProductResolver();
+    }
+
+    @Bean
     public UserResolver userResolver() {
         return new UserResolver();
     }

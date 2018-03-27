@@ -1,5 +1,7 @@
 package com.bdgx.guoi.shopiefrontend.graphql.type;
 
+import java.util.ArrayList;
+
 //# A catalog represents a grouping of products that a shop owner can create to
 //        # organize them or make their shops easier to browse.
 //        type Catalog implements Node{
@@ -12,6 +14,7 @@ package com.bdgx.guoi.shopiefrontend.graphql.type;
 //        # Parent Catalog
 //        parent:Catalog
 //}
+
 public class Catalog {
     //  # Globally unique identifier.
     private final String id;// id: ID!
@@ -22,9 +25,11 @@ public class Catalog {
     // # Parent Catalog
     private final Catalog parent;// parent: Catalog
 
+
     public Catalog(String id, String title, Catalog parent) {
         this.id = id;
         this.title = title;
         this.parent = parent;
     }
+
 }
