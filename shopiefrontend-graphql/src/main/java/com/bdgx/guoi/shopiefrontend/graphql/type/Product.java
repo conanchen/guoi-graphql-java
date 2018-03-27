@@ -46,4 +46,5 @@ public class Product {
         this.title = title;
         this.vendor = vendor;
     }
+
 }
