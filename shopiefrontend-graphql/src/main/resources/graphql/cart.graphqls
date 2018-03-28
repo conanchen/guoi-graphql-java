@@ -75,3 +75,20 @@ type CartLineItem {
   # The product object associated to the line item.
   variant: ProductVariant
 }
+
+
+type CartLineItemsUpsertPayload {
+  # The  cart object.
+  cart: Cart
+
+  # List of errors that occurred executing the mutation.
+  userErrors: [UserError!]!
+}
+
+type CartLineItemsDeletePayload {
+  # The  cart object.
+  cart: Cart
+
+  # List of errors that occurred executing the mutation.
+  userErrors: [UserError!]!
+}

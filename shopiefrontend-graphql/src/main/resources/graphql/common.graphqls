@@ -22,6 +22,14 @@ type PageInfo {
   startCursor: String
 }
 
+# Represents an error in the input of a mutation.
+type UserError {
+  # Path to input field which caused the error.
+  field: [String!]
+
+  # The error message.
+  message: String!
+}
 
 # Represents a generic custom attribute.
 type Attribute {
@@ -30,6 +38,12 @@ type Attribute {
 
   # Value of the attribute.
   value: String
+}
+
+# Specifies the input fields required for an attribute.
+input AttributeInput {
+  key: String!
+  value: String!
 }
 
 # Currency codes

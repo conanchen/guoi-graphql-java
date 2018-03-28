@@ -34,6 +34,25 @@ type Query {
 # The Root Mutation for the application
 type Mutation {
     createCustomer(firstName: String, lastName: String, email: String!):Customer!
+
+#    cartLineItemsUpsert(productVariantId: String!,quantity: Int!):CartLineItemsUpsertPayload!
+#    cartLineItemsDelete(productVariantId: String!):CartLineItemsDeletePayload!
+
+    checkout0Create(input: CheckoutCreateInput!):CheckoutCreatePayload!
+    noUsedCheckoutCreate1(input: CheckoutLineItemInput):CheckoutCreatePayload!
+    noUsedCheckoutCreate2(input: AttributeInput):CheckoutCreatePayload!
+    noUsedCheckoutCreate3(input: MailingAddressInput):CheckoutCreatePayload!
+
+    #Updates the shipping address of an existing checkout.
+    checkout1ShippingAddressUpdate(
+        # The shipping address to where the line items will be shipped
+        shippingAddress: MailingAddressInput!
+        # The ID of the checkout
+        checkoutId: ID!
+    ): CheckoutShippingAddressUpdatePayload!
+
+    checkout9CompleteFree(checkoutId: ID!): CheckoutCompleteFreePayload!
+
 }
 
 

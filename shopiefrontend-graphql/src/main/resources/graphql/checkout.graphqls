@@ -114,3 +114,80 @@ type CheckoutLineItem implements Node {
   # Product variant of the line item.
   variant: ProductVariant
 }
+
+
+###############################################################################################
+###############################################################################################
+###############################################################################################
+# Specifies the fields required to create a checkout.
+input CheckoutCreateInput {
+  # The email with which the customer wants to checkout.
+  email: String
+
+  # A list of line item objects, each one containing information about an item in the checkout.
+  lineItems: [CheckoutLineItemInput!]
+
+  # The shipping address to where the line items will be shipped.
+  shippingAddress: MailingAddressInput
+
+  # The text of an optional note that a shop owner can attach to the checkout.
+  note: String
+
+  # A list of extra information that is added to the checkout.
+  customAttributes: [AttributeInput!]
+
+  # Allows setting partial addresses on a Checkout, skipping the full validation of attributes.
+  # The required attributes are city, province, and country.
+  # Full validation of addresses is still done at complete time.
+  allowPartialAddresses: Boolean
+}
+
+# Specifies the input fields to create a line item on a checkout.
+input CheckoutLineItemInput {
+  # Extra information in the form of an array of Key-Value pairs about the line item.
+  customAttributes: [AttributeInput!]
+
+  # The quantity of the line item.
+  quantity: Int!
+
+  # The identifier of the product variant for the line item.
+  variantId: ID!
+}
+
+# Specifies the fields accepted to create or update a mailing address.
+input MailingAddressInput {
+  address1: String
+  address2: String
+  city: String
+  company: String
+  country: String
+  firstName: String
+  lastName: String
+  phone: String
+  province: String
+  zip: String
+}
+
+type CheckoutCreatePayload {
+  # The new checkout object.
+  checkout: Checkout
+
+  # List of errors that occurred executing the mutation.
+  userErrors: [UserError!]!
+}
+
+type CheckoutShippingAddressUpdatePayload{
+  # The  checkout object.
+  checkout: Checkout
+
+  # List of errors that occurred executing the mutation.
+  userErrors: [UserError!]!
+}
+
+type CheckoutCompleteFreePayload{
+  # The  checkout object.
+  checkout: Checkout
+
+  # List of errors that occurred executing the mutation.
+  userErrors: [UserError!]!
+}
