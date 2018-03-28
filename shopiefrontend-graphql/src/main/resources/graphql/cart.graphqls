@@ -73,5 +73,5 @@ type CartLineItem {
   title: String!
 
   # The product object associated to the line item.
-  variant: Product
+  variant: ProductVariant
 }

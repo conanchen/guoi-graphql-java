@@ -449,6 +449,21 @@ enum CurrencyCode {
   ZMW
 }
 
+# Units of measurements for weight.
+enum WeightUnit {
+  # 1 equals 1000 grams
+  KILOGRAMS
+
+  # Metric system unit of mass
+  GRAMS
+
+  # 1 equals 16 ounces
+  POUNDS
+
+  # Imperial system unit of mass
+  OUNCES
+}
+
 # A monetary value string.
 scalar Money
 

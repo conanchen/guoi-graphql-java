@@ -146,7 +146,22 @@ type Product implements Node {
   # variantBySelectedOptions(selectedOptions: [SelectedOptionInput!]!): ProductVariant
 
   # List of the product’s variants.
-  # variants(first: Int, after: String, last: Int, before: String, reverse: Boolean = false, sortKey: ProductVariantSortKeys = POSITION): ProductVariantConnection!
+  variants(
+    # Returns the elements in the list that come after the specified global ID.
+    after: String
+
+    # Returns the elements in the list that come before the specified global ID.
+    before: String
+
+    # Returns the first _n_ elements from the list.
+    first: Int
+
+    # Returns the last _n_ elements from the list.
+    last: Int
+
+    reverse: Boolean = false
+    #sortKey: ProductVariantSortKeys = POSITION
+  ): ProductVariantConnection!
 
   # The product’s vendor name.
   vendor: String!
@@ -182,4 +197,66 @@ type ProductEdge {
 
   # The item at the end of ProductEdge.
   node: Product!
+}
+
+type ProductVariantConnection {
+  # A list of edges.
+  edges: [ProductVariantEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+}
+
+type ProductVariantEdge {
+  # A cursor for use in pagination.
+  cursor: String!
+
+  # The item at the end of ProductVariantEdge.
+  node: ProductVariant!
+}
+
+# A product variant represents a different version of a product, such as differing sizes or differing colors.
+type ProductVariant implements Node {
+  # Globally unique identifier.
+  id: ID!
+
+  # Indicates if the product variant is in stock.
+  available: Boolean
+
+  # Indicates if the product variant is available for sale.
+  availableForSale: Boolean!
+
+
+#  # Image associated with the product variant.
+#  image(
+#    # Image width in pixels between 1 and 2048
+#    maxWidth: Int
+#
+#    # Image height in pixels between 1 and 2048
+#    maxHeight: Int
+#
+#    # If specified, crop the image keeping the specified region
+#    crop: CropRegion
+#
+#    # Image size multiplier retina displays. Must be between 1 and 3
+#    scale: Int = 1
+#  ): Image
+
+  # The product variant’s price.
+  price: Money!
+
+  # The product object that the product variant belongs to.
+  product: Product!
+
+  # The SKU (Stock Keeping Unit) associated with the variant.
+  sku: String
+
+  # The product variant’s title.
+  title: String!
+
+  # The weight of the product variant in the unit system specified with `weight_unit`.
+  weight: Float
+
+  # Unit of measurement for weight.
+  weightUnit: WeightUnit!
 }

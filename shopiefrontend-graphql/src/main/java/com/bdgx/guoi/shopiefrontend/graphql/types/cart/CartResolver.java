@@ -1,7 +1,9 @@
 package com.bdgx.guoi.shopiefrontend.graphql.types.cart;
 
+import com.bdgx.guoi.graphql.types.common.WeightUnit;
 import com.bdgx.guoi.shopiefrontend.graphql.types.PageInfo;
 import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.Product;
+import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.ProductVariant;
 import com.coxautodev.graphql.tools.GraphQLResolver;
 
 import java.util.ArrayList;
@@ -28,16 +30,20 @@ public class CartResolver implements GraphQLResolver<Cart> {
             Boolean reverse
 
     ) {
-        Product p1 = new Product("productid1", "descriptionHtml--1", "productType1",
-                null, "product 1 title", "vendor1");
-        Product p2 = new Product("productid2", "descriptionHtml--2", "productType1",
+
+        Product prd = new Product("productid2", "descriptionHtml--2", "productType1",
                 null, "product 2 title", "vendor1");
-        Product p3 = new Product("productid3", "descriptionHtml--3", "productType2",
-                null, "product 3 title", "vendor1");
+
+        ProductVariant pv1 = new ProductVariant("productvariantid1", Boolean.TRUE,Boolean.TRUE, Float.valueOf(1.0f),prd,"descriptionHtml--1", "productvariant1",
+                Float.valueOf(3.0f), WeightUnit.GRAMS);
+        ProductVariant pv2 = new ProductVariant("productvariantid2", Boolean.TRUE,Boolean.TRUE, Float.valueOf(1.0f),prd,"descriptionHtml--1", "productvariant2",
+                Float.valueOf(3.0f), WeightUnit.GRAMS);
+        ProductVariant pv3 = new ProductVariant("productvariantid3", Boolean.TRUE,Boolean.TRUE, Float.valueOf(1.0f),prd,"descriptionHtml--1", "productvariant3",
+                Float.valueOf(3.0f), WeightUnit.GRAMS);
         return new CartLineItemConnection(new ArrayList<CartLineItemEdge>() {{
-            add(new CartLineItemEdge("cusor1", new CartLineItem(null, Integer.valueOf(3), "line 1 title", p1)));
-            add(new CartLineItemEdge("cusor2", new CartLineItem(null, Integer.valueOf(4), "line 2 title", p2)));
-            add(new CartLineItemEdge("cusor3", new CartLineItem(null, Integer.valueOf(5), "line 3 title", p3)));
+            add(new CartLineItemEdge("cusor1", new CartLineItem(null, Integer.valueOf(3), "line 1 title", pv1)));
+            add(new CartLineItemEdge("cusor2", new CartLineItem(null, Integer.valueOf(4), "line 2 title", pv2)));
+            add(new CartLineItemEdge("cusor3", new CartLineItem(null, Integer.valueOf(5), "line 3 title", pv3)));
         }},
                 new PageInfo("end", Boolean.FALSE, Boolean.FALSE, "start"));
     }

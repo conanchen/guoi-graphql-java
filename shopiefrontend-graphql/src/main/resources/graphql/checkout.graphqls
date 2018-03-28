@@ -112,5 +112,5 @@ type CheckoutLineItem implements Node {
   title: String!
 
   # Product variant of the line item.
-  variant: Product
+  variant: ProductVariant
 }

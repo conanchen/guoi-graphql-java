@@ -109,8 +109,8 @@ type OrderLineItem {
   # The title of the product combined with title of the variant.
   title: String!
 
-  # The product object associated to the line item.
-  variant: Product
+  # The product variant object associated to the line item.
+  variant: ProductVariant
 }
 
 # Represents a generic custom attribute.

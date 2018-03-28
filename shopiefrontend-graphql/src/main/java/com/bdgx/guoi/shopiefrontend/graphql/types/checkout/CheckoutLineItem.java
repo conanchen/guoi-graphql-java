@@ -2,6 +2,7 @@ package com.bdgx.guoi.shopiefrontend.graphql.types.checkout;
 
 import com.bdgx.guoi.graphql.types.common.Attribute;
 import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.Product;
+import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.ProductVariant;
 
 import java.util.List;
 
@@ -19,9 +20,9 @@ public class CheckoutLineItem {
     private final String title;//    title: String!
     //
 //            # Product variant of the line item.
-    private final Product variant;//    variant: Product
+    private final ProductVariant variant;//    variant: ProductVariant
 
-    public CheckoutLineItem(String id, List<Attribute> customAttributes, Integer quantity, String title, Product variant) {
+    public CheckoutLineItem(String id, List<Attribute> customAttributes, Integer quantity, String title, ProductVariant variant) {
         this.id = id;
         this.customAttributes = customAttributes;
         this.quantity = quantity;
