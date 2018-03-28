@@ -4,10 +4,12 @@ import com.bdgx.guoi.graphql.types.common.CurrencyCode;
 import com.bdgx.guoi.shopiefrontend.graphql.types.customer.MailingAddress;
 import com.bdgx.guoi.shopiefrontend.graphql.types.shop.Shop;
 
+import java.util.Date;
+
 public class Order {
     //  # Globally unique identifier.
     private final String id;//            id: ID!
-//  # The Shop from which products was ordered
+    //  # The Shop from which products was ordered
     private final Shop shop;//    shop: Shop!
 
     //            # The code of the currency used for the payment.
@@ -34,8 +36,8 @@ public class Order {
 //  # The date and time when the order was imported.
 //  # This value can be set to dates in the past when importing from other systems.
 //  # If no value is provided, it will be auto-generated based on current date and time.
-//  # processedAt: DateTime!
-//
+    private final Date processedAt;//  # processedAt: DateTime!
+    //
 //            # The address to where the order will be shipped.
     private final MailingAddress shippingAddress;//            shippingAddress: MailingAddress
     //
@@ -54,7 +56,9 @@ public class Order {
 //            # The total cost of taxes.
     private final Float totalTax;//            totalTax: Money
 
-    public Order(String id, Shop shop,CurrencyCode currencyCode, String customerLocale, String email, Integer orderNumber, String phone, MailingAddress shippingAddress, Float subtotalPrice, Float totalPrice, Float totalRefunded, Float totalShippingPrice, Float totalTax) {
+    public Order(String id, Shop shop, CurrencyCode currencyCode, String customerLocale, String email,
+                 Integer orderNumber, String phone, Date processedAt,MailingAddress shippingAddress, Float subtotalPrice,
+                 Float totalPrice, Float totalRefunded, Float totalShippingPrice, Float totalTax) {
         this.id = id;
         this.shop = shop;
         this.currencyCode = currencyCode;
@@ -62,6 +66,7 @@ public class Order {
         this.email = email;
         this.orderNumber = orderNumber;
         this.phone = phone;
+        this.processedAt = processedAt;
         this.shippingAddress = shippingAddress;
         this.subtotalPrice = subtotalPrice;
         this.totalPrice = totalPrice;

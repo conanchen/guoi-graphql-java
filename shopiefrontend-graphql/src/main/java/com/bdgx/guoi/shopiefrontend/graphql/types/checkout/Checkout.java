@@ -6,6 +6,7 @@ import com.bdgx.guoi.shopiefrontend.graphql.types.customer.MailingAddress;
 import com.bdgx.guoi.shopiefrontend.graphql.types.order.Order;
 import com.bdgx.guoi.shopiefrontend.graphql.types.shop.Shop;
 
+import java.util.Date;
 import java.util.List;
 
 public class Checkout {
@@ -13,16 +14,16 @@ public class Checkout {
     //  # Globally unique identifier.
     private final String id;//            id: ID!
 
-//  # The Shop from which products was ordered
-private final Shop shop;//    shop: Shop!
-//
+    //  # The Shop from which products was ordered
+    private final Shop shop;//    shop: Shop!
+    //
     //
 //            # The date and time when the checkout was completed.
-//            completedAt: DateTime
-//
+    private final Date completedAt;//            completedAt: DateTime
+    //
 //  # The date and time when the checkout was created.
-//            createdAt: DateTime!
-//
+    private final Date createdAt;//            createdAt: DateTime!
+    //
 //            # The currency code for the Checkout.
     private final CurrencyCode currencyCode;//    currencyCode: CurrencyCode!
     //
@@ -56,14 +57,18 @@ private final Shop shop;//    shop: Shop!
     //
 //            # The sum of all the taxes applied to the line items and shipping lines in the checkout.
     private final Float totalTax;//            totalTax: Money!
-//
+    //
 //            # The date and time when the checkout was last updated.
-//    updatedAt: DateTime!
+    private final Date updatedAt;//    updatedAt: DateTime!
 
 
-    public Checkout(String id, Shop shop, CurrencyCode currencyCode, List<Attribute> customAttributes, String email, String note, Order order, Boolean ready, MailingAddress shippingAddress, Float subtotalPrice, Float totalPrice, Float totalTax) {
+    public Checkout(String id, Shop shop,Date completedAt, Date createdAt,CurrencyCode currencyCode, List<Attribute> customAttributes, String email,
+                    String note, Order order, Boolean ready, MailingAddress shippingAddress, Float subtotalPrice,
+                    Float totalPrice, Float totalTax,Date updatedAt) {
         this.id = id;
         this.shop = shop;
+        this.completedAt = completedAt;
+        this.createdAt = createdAt;
         this.currencyCode = currencyCode;
         this.customAttributes = customAttributes;
         this.email = email;
@@ -74,5 +79,6 @@ private final Shop shop;//    shop: Shop!
         this.subtotalPrice = subtotalPrice;
         this.totalPrice = totalPrice;
         this.totalTax = totalTax;
+        this.updatedAt = updatedAt;
     }
 }

@@ -15,6 +15,7 @@ import com.bdgx.guoi.shopiefrontend.graphql.types.shop.Shop;
 import com.coxautodev.graphql.tools.GraphQLResolver;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CustomerResolver implements GraphQLResolver<Customer> {
 
@@ -70,17 +71,17 @@ public class CustomerResolver implements GraphQLResolver<Customer> {
     ){
         Shop shop = new Shop("id001","shopname","descriptoin");
        Order o1= new Order("orderid1",shop, CurrencyCode.CNY,"customerLocale",
-                "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",
+                "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",new Date(),
                 new MailingAddress(),Float.valueOf(11.2f),Float.valueOf(112.0f),
                 Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
 
        Order o2= new Order("orderid2",shop, CurrencyCode.CNY,"customerLocale",
-                "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",
+                "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",new Date(),
                 new MailingAddress(),Float.valueOf(11.2f),Float.valueOf(112.0f),
                 Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
 
        Order o3= new Order("orderid3",shop, CurrencyCode.CNY,"customerLocale",
-                "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",
+                "conan8chan@yahoo.com",Integer.valueOf(232),"13423423423",new Date(),
                 new MailingAddress(),Float.valueOf(11.2f),Float.valueOf(112.0f),
                 Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
 
@@ -152,13 +153,13 @@ public class CustomerResolver implements GraphQLResolver<Customer> {
             String query
     ){
         Shop shop1 = new Shop("shop1","shopname1","desc1");
-        Checkout o1= new Checkout("checkoutid1",shop1,CurrencyCode.CNY,null,"conanchen@yao.com","anote"
-        ,null,Boolean.FALSE,null,Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
+        Checkout o1= new Checkout("checkoutid1",shop1,new Date(),new Date(),CurrencyCode.CNY,null,"conanchen@yao.com","anote"
+        ,null,Boolean.FALSE,null,Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f),new Date());
 
-        Checkout o2= new Checkout("checkoutid2",shop1,CurrencyCode.CNY,null,"conanchen@yao.com","anote"
-                ,null,Boolean.FALSE,null,Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
-        Checkout o3= new Checkout("checkoutid3",shop1,CurrencyCode.CNY,null,"conanchen@yao.com","anote"
-                ,null,Boolean.FALSE,null,Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f));
+        Checkout o2= new Checkout("checkoutid2",shop1,new Date(),new Date(),CurrencyCode.CNY,null,"conanchen@yao.com","anote"
+                ,null,Boolean.FALSE,null,Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f),new Date());
+        Checkout o3= new Checkout("checkoutid3",shop1,new Date(),new Date(),CurrencyCode.CNY,null,"conanchen@yao.com","anote"
+                ,null,Boolean.FALSE,null,Float.valueOf(22.0f),Float.valueOf(22.0f),Float.valueOf(22.0f),new Date());
 
 
 
