@@ -1,0 +1,116 @@
+type CheckoutConnection {
+  # A list of edges.
+  edges: [CheckoutEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+}
+
+type CheckoutEdge {
+  # A cursor for use in pagination.
+  cursor: String!
+
+  # The item at the end of Checkout.
+  node: Checkout!
+}
+
+# A container for all the information required to checkout items and pay.
+type Checkout implements Node {
+  # Globally unique identifier.
+  id: ID!
+
+  # The Shop from which products was ordered
+  shop: Shop!
+
+  # The date and time when the checkout was completed.
+  #completedAt: DateTime
+
+  # The date and time when the checkout was created.
+  #createdAt: DateTime!
+
+  # The currency code for the Checkout.
+  currencyCode: CurrencyCode!
+
+  # A list of extra information that is added to the checkout.
+  customAttributes: [Attribute!]!
+
+  # The email attached to this checkout.
+  email: String
+
+  # List of the checkout’s line items.
+  lineItems(
+    # Returns the elements in the list that come after the specified global ID.
+    after: String
+
+    # Returns the elements in the list that come before the specified global ID.
+    before: String
+
+    # Returns the first _n_ elements from the list.
+    first: Int
+
+    # Returns the last _n_ elements from the list.
+    last: Int
+
+    reverse: Boolean = false
+  ): CheckoutLineItemConnection!
+
+  note: String
+
+  # The resulting order from a paid checkout.
+  order: Order
+
+  # Whether or not the Checkout is ready and can be completed. Checkouts may have
+  # asynchronous operations that can take time to finish. If you want to complete
+  # a checkout or ensure all the fields are populated and up to date, polling is
+  # required until the value is true. 
+  ready: Boolean!
+
+  # The shipping address to where the line items will be shipped.
+  shippingAddress: MailingAddress
+
+  # Price of the checkout before shipping, taxes, and discounts.
+  subtotalPrice: Money!
+
+  # The sum of all the prices of all the items in the checkout, taxes and discounts included.
+  totalPrice: Money!
+
+  # The sum of all the taxes applied to the line items and shipping lines in the checkout.
+  totalTax: Money!
+
+  # The date and time when the checkout was last updated.
+  #updatedAt: DateTime!
+}
+
+type CheckoutLineItemConnection {
+  # A list of edges.
+  edges: [CheckoutLineItemEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+}
+
+type CheckoutLineItemEdge {
+  # A cursor for use in pagination.
+  cursor: String!
+
+  # The item at the end of CheckoutLineItem.
+  node: CheckoutLineItem!
+}
+
+# A single line item in the checkout, grouped by variant and attributes.
+type CheckoutLineItem implements Node {
+  # Globally unique identifier.
+  id: ID!
+
+  # Extra information in the form of an array of Key-Value pairs about the line item.
+  customAttributes: [Attribute!]!
+
+  # The quantity of the line item.
+  quantity: Int!
+
+  # Title of the line item. Defaults to the product's title.
+  title: String!
+
+  # Product variant of the line item.
+  variant: Product
+}

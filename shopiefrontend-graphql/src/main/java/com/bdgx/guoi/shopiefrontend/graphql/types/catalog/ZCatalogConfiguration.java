@@ -1,14 +1,10 @@
-package com.bdgx.guoi.shopiefrontend.graphql;
+package com.bdgx.guoi.shopiefrontend.graphql.types.catalog;
 
-import com.bdgx.guoi.shopiefrontend.graphql.types.*;
-import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.*;
-import com.bdgx.guoi.shopiefrontend.graphql.types.customer.CustomerResolver;
-import com.bdgx.guoi.shopiefrontend.graphql.types.user.UserResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class GraphqlConfiguration {
+public class ZCatalogConfiguration {
 
     @Bean
     public CatalogResolver catalogResolver() {
@@ -23,16 +19,6 @@ public class GraphqlConfiguration {
     @Bean
     public CatalogEdgeResolver catalogEdgeResolver() {
         return new CatalogEdgeResolver();
-    }
-
-    @Bean
-    public PageInfoResolver pageInfoResolver() {
-        return new PageInfoResolver();
-    }
-
-    @Bean
-    public CustomerResolver personResolver() {
-        return new CustomerResolver();
     }
 
     @Bean
@@ -52,18 +38,5 @@ public class GraphqlConfiguration {
         return new ProductResolver();
     }
 
-    @Bean
-    public UserResolver userResolver() {
-        return new UserResolver();
-    }
 
-    @Bean
-    public Query query() {
-        return new Query();
-    }
-
-    @Bean
-    public Mutation mutation() {
-        return new Mutation();
-    }
 }

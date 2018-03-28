@@ -17,7 +17,9 @@ type CartEdge {
 # An cart is a customer’s completed request to purchase one or more products from
 # a shop. An cart is created when a customer completes the checkout process,
 # during which time they provides an email address, billing address and payment information.
-type Cart {
+type Cart  implements Node {
+  # Globally unique identifier.
+  id: ID!
 
   # The Shop from which products was ordered
   shop: Shop!

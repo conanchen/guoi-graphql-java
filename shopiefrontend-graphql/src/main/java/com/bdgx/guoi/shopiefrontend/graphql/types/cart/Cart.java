@@ -5,6 +5,8 @@ import com.bdgx.guoi.shopiefrontend.graphql.types.customer.MailingAddress;
 import com.bdgx.guoi.shopiefrontend.graphql.types.shop.Shop;
 
 public class Cart {
+    //  # Globally unique identifier.
+    private final String id;//            id: ID!
     //
 //  # The Shop from which products was ordered
     private final Shop shop;//    shop: Shop!
@@ -12,7 +14,8 @@ public class Cart {
     //      # Price of the cart before shipping and taxes.
     private final Float subtotalPrice;//    subtotalPrice: Money
 
-    public Cart(Shop shop, Float subtotalPrice) {
+    public Cart(String id, Shop shop, Float subtotalPrice) {
+        this.id = id;
         this.shop = shop;
         this.subtotalPrice = subtotalPrice;
     }
