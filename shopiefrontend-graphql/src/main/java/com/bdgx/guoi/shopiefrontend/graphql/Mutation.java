@@ -1,6 +1,7 @@
 package com.bdgx.guoi.shopiefrontend.graphql;
 
 import com.bdgx.guoi.graphql.types.common.AttributeInput;
+import com.bdgx.guoi.shopiefrontend.graphql.types.cart.mutation.*;
 import com.bdgx.guoi.shopiefrontend.graphql.types.checkout.mutation.*;
 import com.bdgx.guoi.shopiefrontend.graphql.types.customer.Customer;
 import com.bdgx.guoi.shopiefrontend.graphql.types.customer.MailingAddress;
@@ -19,8 +20,24 @@ public class Mutation implements GraphQLMutationResolver {
                 "displayName", email, firstName, lastName, "12345679858");
     }
 
+    //    cartLineItemsUpsert(input: CartLineItemsUpsertInput):CartLineItemsUpsertPayload!
+    public CartLineItemsUpsertPayload cartLineItemsUpsert(CartLineItemsUpsertInput input) {
+        throw new NotImplementedException();
+    }
+
+    //    cartLineItemsDelete(input: CartLineItemsDeleteInput):CartLineItemsDeletePayload!
+    public CartLineItemsDeletePayload cartLineItemsDelete(CartLineItemsDeleteInput input) {
+        throw new NotImplementedException();
+    }
+//    noUsedCart1(input: CartLineItemInput):CartLineItemsDeletePayload!
+    public CartLineItemsDeletePayload noUsedCart1(CartLineItemInput input){
+        // NO USED, only for workaround, Nested Input Types Are Not Working (again) #77
+        // https://github.com/graphql-java/graphql-java-tools/issues/77
+        throw new NoSuchElementException();
+    }
+
     //    checkoutCreate(mutation: CheckoutCreateInput!):CheckoutCreatePayload!
-    public CheckoutCreatePayload checkoutCreate(CheckoutCreateInput input) {
+    public CheckoutCreatePayload checkout0Create(CheckoutCreateInput input) {
         throw new NotImplementedException();
     }
 
@@ -53,14 +70,14 @@ public class Mutation implements GraphQLMutationResolver {
 //            # The ID of the checkout
 //            checkoutId: ID!
 //    ): CheckoutShippingAddressUpdatePayload!
-    public CheckoutShippingAddressUpdatePayload checkoutShippingAddressUpdate(
+    public CheckoutShippingAddressUpdatePayload checkout1ShippingAddressUpdate(
             MailingAddressInput shippingAddress,
             String id) {
         throw new NotImplementedException();
     }
 
-//    checkoutCompleteFree(checkoutId: ID!): CheckoutCompleteFreePayload!
-    public CheckoutCompleteFreePayload checkoutCompleteFree(String checkoutId){
-       throw new NotImplementedException();
+    //    checkoutCompleteFree(checkoutId: ID!): CheckoutCompleteFreePayload!
+    public CheckoutCompleteFreePayload checkout9CompleteFree(String checkoutId) {
+        throw new NotImplementedException();
     }
 }

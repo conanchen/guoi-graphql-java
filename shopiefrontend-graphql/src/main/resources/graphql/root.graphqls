@@ -35,8 +35,9 @@ type Query {
 type Mutation {
     createCustomer(firstName: String, lastName: String, email: String!):Customer!
 
-#    cartLineItemsUpsert(productVariantId: String!,quantity: Int!):CartLineItemsUpsertPayload!
-#    cartLineItemsDelete(productVariantId: String!):CartLineItemsDeletePayload!
+    cartLineItemsUpsert(input: CartLineItemsUpsertInput):CartLineItemsUpsertPayload!
+    cartLineItemsDelete(input: CartLineItemsDeleteInput):CartLineItemsDeletePayload!
+    noUsedCart1(input: CartLineItemInput):CartLineItemsDeletePayload!
 
     checkout0Create(input: CheckoutCreateInput!):CheckoutCreatePayload!
     noUsedCheckoutCreate1(input: CheckoutLineItemInput):CheckoutCreatePayload!
