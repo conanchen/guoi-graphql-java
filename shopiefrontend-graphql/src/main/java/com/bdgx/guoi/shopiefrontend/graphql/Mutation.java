@@ -9,7 +9,6 @@ import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import org.springframework.stereotype.Component;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 @Component

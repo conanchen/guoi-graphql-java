@@ -1,3 +1,5 @@
 rootProject.ext.springBootVersion = '1.5.9.RELEASE'
 rootProject.ext.GRPC_STARTER_VERSION = '2.1.5'
 rootProject.ext.LOMBOK_VERSION= "1.16.20"
+rootProject.ext.GRAPHQL_SPRING_BOOT_STARTER_VERSION = "3.10.0"
+rootProject.ext.GRAPHQL_JAVA_TOOLS_VERSION = "4.3.0"

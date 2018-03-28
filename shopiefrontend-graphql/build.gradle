@@ -26,13 +26,13 @@ dependencies {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
 
-    compile("com.graphql-java:graphql-java-tools:4.3.0") {
+    compile("com.graphql-java:graphql-java-tools:$GRAPHQL_JAVA_TOOLS_VERSION") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
-    compile("com.graphql-java:graphql-spring-boot-starter:3.10.0") {
+    compile("com.graphql-java:graphql-spring-boot-starter:$GRAPHQL_SPRING_BOOT_STARTER_VERSION") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
-    compile("com.graphql-java:graphiql-spring-boot-starter:3.10.0") {
+    compile("com.graphql-java:graphiql-spring-boot-starter:$GRAPHQL_SPRING_BOOT_STARTER_VERSION") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
 
