@@ -1,7 +1,10 @@
 package com.bdgx.guoi.shopiefrontend.graphql.types.catalog;
 
+import com.bdgx.guoi.graphql.types.common.CropRegion;
+import com.bdgx.guoi.graphql.types.common.Image;
 import com.bdgx.guoi.shopiefrontend.graphql.types.PageInfo;
 import com.coxautodev.graphql.tools.GraphQLResolver;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 
@@ -35,4 +38,21 @@ public class CatalogResolver implements GraphQLResolver<Catalog> {
         }}, new PageInfo("end", Boolean.FALSE, Boolean.FALSE, "start"));
     }
 
+
+    public Image image(
+            Catalog catalog,
+            //    #Image width in pixels between 1 and 2048
+            Integer maxWidth,//            maxWidth: Int
+
+            //            # Image height in pixels between 1 and 2048
+            Integer maxHeight,//            maxHeight: Int
+
+            //            # If specified, crop the image keeping the specified region
+            CropRegion crop,//            crop: CropRegion
+
+            //            # Image size multiplier retina displays. Must be between 1 and 3
+            Integer scale//            scale: Int = 1
+    ) {
+        throw new NotImplementedException();
+    }
 }

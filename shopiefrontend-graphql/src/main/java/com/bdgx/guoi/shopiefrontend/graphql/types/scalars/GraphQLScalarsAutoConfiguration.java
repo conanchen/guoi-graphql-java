@@ -19,4 +19,10 @@ public class GraphQLScalarsAutoConfiguration {
         return new GraphQLMoney();
     }
 
+    @Bean
+    @ConditionalOnMissingBean
+    public GraphQLURL graphQLURL() {
+        return new GraphQLURL();
+    }
+
 }

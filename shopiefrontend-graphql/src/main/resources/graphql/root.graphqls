@@ -1,5 +1,5 @@
 
-# The Root Query for the application
+# The Root Query for SHOPIEFRONTEND application
 type Query {
   # A list of catalog.
   catalogs(

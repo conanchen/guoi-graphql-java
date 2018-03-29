@@ -46,6 +46,36 @@ input AttributeInput {
   value: String!
 }
 
+# Represents an image resource.
+type Image {
+  # A unique identifier for the image.
+  id: ID
+
+  # A word or phrase to share the nature or contents of an image.
+  altText: String
+
+  # The location of the image as a URL.
+  src: URL!
+}
+
+# The part of the image that should remain after cropping.
+enum CropRegion {
+  # Keep the center of the image
+  CENTER
+
+  # Keep the top of the image
+  TOP
+
+  # Keep the bottom of the image
+  BOTTOM
+
+  # Keep the left of the image
+  LEFT
+
+  # Keep the right of the image
+  RIGHT
+}
+
 # Currency codes
 enum CurrencyCode {
   # United States Dollars (USD)
@@ -483,3 +513,6 @@ scalar Money
 
 # Date implementation
 scalar DateTime
+
+# URL implementation
+scalar URL

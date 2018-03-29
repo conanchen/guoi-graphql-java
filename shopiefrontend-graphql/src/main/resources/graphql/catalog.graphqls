@@ -21,19 +21,19 @@ type Catalog implements Node {
   # descriptionHtml: HTML!
 
   # Image associated with the catalog.
-#  image(
-#    # Image width in pixels between 1 and 2048
-#    maxWidth: Int
-#
-#    # Image height in pixels between 1 and 2048
-#    maxHeight: Int
-#
-#    # If specified, crop the image keeping the specified region
-#    crop: CropRegion
-#
-#    # Image size multiplier retina displays. Must be between 1 and 3
-#    scale: Int = 1
-#  ): Image
+  image(
+    # Image width in pixels between 1 and 2048
+    maxWidth: Int
+
+    # Image height in pixels between 1 and 2048
+    maxHeight: Int
+
+    # If specified, crop the image keeping the specified region
+    crop: CropRegion
+
+    # Image size multiplier retina displays. Must be between 1 and 3
+    scale: Int = 1
+  ): Image
 
 
   # The date and time when the catalog was last modified.
