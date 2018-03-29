@@ -6,9 +6,11 @@ import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.CatalogConnection;
 import com.bdgx.guoi.shopiefrontend.graphql.types.catalog.CatalogEdge;
 import com.bdgx.guoi.shopiefrontend.graphql.types.customer.Customer;
 import com.bdgx.guoi.shopiefrontend.graphql.types.customer.MailingAddress;
+import com.bdgx.guoi.shopiefrontend.graphql.types.order.OrderConnection;
 import com.bdgx.guoi.shopiefrontend.graphql.types.user.User;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 
@@ -54,5 +56,28 @@ public class Query implements GraphQLQueryResolver {
             add(new CatalogEdge("cursor", catalog2));
             add(new CatalogEdge("cursor", catalog3));
         }}, new PageInfo("end", Boolean.FALSE, Boolean.FALSE, "start"));
+    }
+
+
+    public OrderConnection orders(
+
+//    # Returns the elements in the list that come after the specified global ID.
+            String after,//            after: String
+//
+//            # Returns the elements in the list that come before the specified global ID.
+            String before,//            before: String
+//
+//            # Returns the first _n_ elements from the list.
+            Integer first,//            first: Int
+//
+//            # Returns the last _n_ elements from the list.
+            Integer last//            last: Int
+//
+//            # Ordering options for repositories returned from the connection
+//            # orderBy: RepositoryOrder
+
+    ) {
+
+        throw new NotImplementedException();
     }
 }
