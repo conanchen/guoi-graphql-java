@@ -39,7 +39,7 @@ dependencies {
 }
 ```
 	
-## Import the library configuation into your project to use the defined scalars
+## Step 3. Import the library configuation into your project to use the defined scalars
 ```java
 @Configuration
 @Import(ZGraphQLScalarsAutoConfiguration.class)
