@@ -1,2 +1,2 @@
-rootProject.name = 'guoi-graphql-java-common'
+rootProject.name = 'guoi-graphql-java'
 include 'graphql-java-common'

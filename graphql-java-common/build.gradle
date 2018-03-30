@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'idea'
+    id 'org.springframework.boot'
 }
 
 group = 'guoi-graphql-java-common'
@@ -22,7 +23,19 @@ dependencies {
     compile("com.graphql-java:graphql-java-tools:$GRAPHQL_JAVA_TOOLS_VERSION") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
+
+    compile("org.springframework.boot:spring-boot") {
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
+    compile("org.springframework.boot:spring-boot-autoconfigure") {
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
 }
+
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:$springBootVersion") }
+}
+
 
 
 project.logger.lifecycle("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");

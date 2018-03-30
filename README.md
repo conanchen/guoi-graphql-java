@@ -17,31 +17,15 @@ allprojects {
 ## Step 2. Add the dependency
 
 ### For Java Application(Client or Server)
-[guoi-micro-apis/master-SNAPSHOT](https://jitpack.io/com/github/conanchen/guoi-micro-apis/master-SNAPSHOT/build.log)
+[guoi-micro-apis/master-SNAPSHOT](https://jitpack.io/com/github/conanchen/guoi-graphql-java/master-SNAPSHOT/build.log)
 ```angular2html
 Build artifacts:
-com.github.conanchen.guoi-micro-apis:party-personevent-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:party-station-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:party-personsocial-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:shopie-shop-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:party-personhealth-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:party-personemployee-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:shopie-order-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:gis-geo-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:party-areacenter-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:cms-article-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:authcow-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:party-opcenter-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:shopie-productcatalog-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:party-topcenter-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:cms-articlecomment-grpc-java:master-f39b4857f9-1
-com.github.conanchen.guoi-micro-apis:gis-asset-grpc-java:master-f39b4857f9-1
+com.github.conanchen:guoi-graphql-java:master-add60ddc41-1
 ```
 #### Add Dependencies As Needed To Your build.gradle
 ```gradle
 dependencies {
-    compile 'com.github.conanchen.guoi-micro-apis:authcow-grpc-java:master-SNAPSHOT'
-    compile 'com.github.conanchen.guoi-micro-apis:gis-asset-grpc-java:master-SNAPSHOT'
+    compile 'com.github.conanchen:guoi-graphql-java:master-SNAPSHOT'
 }
 ```
 	
