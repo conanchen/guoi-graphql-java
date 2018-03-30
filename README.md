@@ -43,7 +43,7 @@ dependencies {
 ```java
 @Configuration
 @Import(ZGraphQLScalarsAutoConfiguration.class)
-public class ZRootConfiguration {
+public class ZYourGraphqlConfiguration {
     //...
 }    
 ```
