@@ -1,9 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 /.idea
 /.gradle
-/constants/build
-/grpc-java/build
-/grpc-javalite/build
-/protos/build
-/helloworld
-./guoi-gateway-shopie.iml
+/build
+./guoi-graphql-java-common.iml
