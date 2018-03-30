@@ -27,7 +27,7 @@ allprojects {
 ## Step 2. Add the dependency
 
 ### For Java Application(Client or Server)
-[guoi-micro-apis/master-SNAPSHOT](https://jitpack.io/com/github/conanchen/guoi-graphql-java/master-SNAPSHOT/build.log)
+[https://jitpack.io/com/github/conanchen/guoi-graphql-java/master-SNAPSHOT/build.log](https://jitpack.io/com/github/conanchen/guoi-graphql-java/master-SNAPSHOT/build.log)
 ```angular2html
 Build artifacts:
 com.github.conanchen:guoi-graphql-java:master-add60ddc41-1
