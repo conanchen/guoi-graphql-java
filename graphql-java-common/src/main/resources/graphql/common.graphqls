@@ -89,6 +89,22 @@ input AddressInput {
   zip: String
 }
 
+type AddressConnection {
+  # A list of edges.
+  edges: [AddressEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+}
+
+type AddressEdge {
+  # A cursor for use in pagination.
+  cursor: String!
+
+  # The item at the end of AddressEdge.
+  node: Address!
+}
+
 # Represents a mailing address for customers and shipping.
 type Address implements Node {
   # Globally unique identifier.

@@ -7,6 +7,8 @@ This library defines the common graphql types/enums/scalars for guoi graphql pro
 -  enum CurrencyCode
 -  enum WeightUnit
 -  type Address
+-  type AddressConnection
+-  type AddressEdge
 -  type Attribute
 -  type Image
 -  type ImageConnection
