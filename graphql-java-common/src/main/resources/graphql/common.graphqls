@@ -46,6 +46,23 @@ input AttributeInput {
   value: String!
 }
 
+
+type ImageConnection {
+  # A list of edges.
+  edges: [ImageEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+}
+
+type ImageEdge {
+  # A cursor for use in pagination.
+  cursor: String!
+
+  # The item at the end of ImageEdge.
+  node: Image!
+}
+
 # Represents an image resource.
 type Image {
   # A unique identifier for the image.

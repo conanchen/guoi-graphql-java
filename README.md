@@ -9,6 +9,8 @@ This library defines the common graphql types/enums/scalars for guoi graphql pro
 -  type Address
 -  type Attribute
 -  type Image
+-  type ImageConnection
+-  type ImageEdge
 -  type PageInfo
 -  type UserError
 -  input AddressInput
