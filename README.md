@@ -1,16 +1,18 @@
 # Introduction
 This library defines the common graphql types/enums/scalars for guoi graphql projects
-1.  scalar Money
-2.  scalar DateTime
-3.  scalar URL
-4.  enum CropRegion
-5.  enum CurrencyCode
-6.  enum WeightUnit
-7.  type Attribute
-8.  type PageInfo
-9.  type UserError
-10. type Image
-11. input AttributeInput
+-  scalar DateTime
+-  scalar Money
+-  scalar URL
+-  enum CropRegion
+-  enum CurrencyCode
+-  enum WeightUnit
+-  type Address
+-  type Attribute
+-  type Image
+-  type PageInfo
+-  type UserError
+-  input AddressInput
+-  input AttributeInput
 
 # For JAVA Application 
 ## Step 1. Add the JitPack repository to your build file
