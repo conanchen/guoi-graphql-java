@@ -58,8 +58,22 @@ type Image {
   src: URL!
 }
 
+# Specifies the fields accepted to create or update a address.
+input AddressInput {
+  address1: String
+  address2: String
+  city: String
+  company: String
+  country: String
+  firstName: String
+  lastName: String
+  phone: String
+  province: String
+  zip: String
+}
+
 # Represents a mailing address for customers and shipping.
-type MailingAddress implements Node {
+type Address implements Node {
   # Globally unique identifier.
   id: ID!
 

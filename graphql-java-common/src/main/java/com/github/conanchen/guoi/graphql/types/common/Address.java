@@ -1,6 +1,6 @@
 package com.github.conanchen.guoi.graphql.types.common;
 
-public class MailingAddress {
+public class Address {
     //  # Globally unique identifier.
     private final String id;//            id: ID!
     //
@@ -59,16 +59,16 @@ public class MailingAddress {
 //  # Zip/Postal Code.
     private final String zip;//    zip: String
 
-    public MailingAddress() {
+    public Address() {
         this("id00", "address1", "address2", "city", "company", "country",
                 "CN", "conan", "formattedArea", "chen",
                 Float.valueOf(2.f), Float.valueOf(1.0f), "name", "phone", "province",
                 "provinceCode", "zip");
     }
 
-    public MailingAddress(String id, String address1, String address2, String city, String company, String country,
-                          String countryCode, String firstName, String formattedArea, String lastName,
-                          Float latitude, Float longitude, String name, String phone, String province, String provinceCode, String zip) {
+    public Address(String id, String address1, String address2, String city, String company, String country,
+                   String countryCode, String firstName, String formattedArea, String lastName,
+                   Float latitude, Float longitude, String name, String phone, String province, String provinceCode, String zip) {
         this.id = id;
         this.address1 = address1;
         this.address2 = address2;

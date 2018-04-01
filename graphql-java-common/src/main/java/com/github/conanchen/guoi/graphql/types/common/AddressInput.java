@@ -1,6 +1,6 @@
 package com.github.conanchen.guoi.graphql.types.common;
 
-public class MailingAddressInput {
+public class AddressInput {
     private final String address1;//    address1: String
     private final String address2;//    address2: String
     private final String city;//    city: String
@@ -12,9 +12,9 @@ public class MailingAddressInput {
     private final String province;//    province: String
     private final String zip;//    zip: String
 
-    public MailingAddressInput(String address1, String address2, String city, String company,
-                               String country, String firstName, String lastName, String phone,
-                               String province, String zip) {
+    public AddressInput(String address1, String address2, String city, String company,
+                        String country, String firstName, String lastName, String phone,
+                        String province, String zip) {
         this.address1 = address1;
         this.address2 = address2;
         this.city = city;
