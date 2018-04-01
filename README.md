@@ -26,20 +26,20 @@ allprojects {
 	
 ## Step 2. Add the dependency
 
-### For Java Application(Client or Server)
+### Check build.log whether it pass the build
 [https://jitpack.io/com/github/conanchen/guoi-graphql-java/master-SNAPSHOT/build.log](https://jitpack.io/com/github/conanchen/guoi-graphql-java/master-SNAPSHOT/build.log)
 ```angular2html
 Build artifacts:
 com.github.conanchen:guoi-graphql-java:master-add60ddc41-1
 ```
-#### Add Dependencies As Needed To Your build.gradle
+### Add Dependencies As Needed To Your build.gradle
 ```gradle
 dependencies {
     compile 'com.github.conanchen:guoi-graphql-java:master-SNAPSHOT'
 }
 ```
 	
-## Step 3. Import the library configuration into your project to use the defined scalars
+## Step 3. Import the library configuration into your project configuration to use the common scalars
 ```java
 @Configuration
 @Import(ZGraphQLScalarsAutoConfiguration.class)
