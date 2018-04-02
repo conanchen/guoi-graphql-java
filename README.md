@@ -62,3 +62,7 @@ public class ZYourGraphqlConfiguration {
     //...
 }    
 ```
+
+# GUOI Graphql API Design Guide
+- Refer to [graph.cool Graphql API](https://www.graph.cool/docs/reference/graphql-api/overview-abogasd0go)
+- Refer to [Customize GUOI Graphql API Design Guide](GUOI_GRAPHQL_API_DESIGN_GUIDE.md)
