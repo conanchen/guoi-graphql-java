@@ -18,6 +18,10 @@ This library defines the common graphql types/enums/scalars for guoi graphql pro
 -  input AddressInput
 -  input AttributeInput
 
+> Refer to [ZGuoiCommonTypes.java](graphql-java-common/src/main/java/com/github/conanchen/guoi/graphql/types/ZGuoiCommonTypes.java) 
+[ZGuoiCommonTypes.graphqls](graphql-java-common/src/main/resources/graphql/ZGuoiCommonTypes.graphqls)
+etc.  for detail definitions.
+
 # For JAVA Application 
 ## Step 1. Add the JitPack repository to your build file
 Add it in your root build.gradle at the end of repositories:
