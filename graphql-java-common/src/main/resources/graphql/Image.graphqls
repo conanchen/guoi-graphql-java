@@ -1,0 +1,28 @@
+
+type ImageConnection {
+  # A list of edges.
+  edges: [ImageEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+}
+
+type ImageEdge {
+  # A cursor for use in pagination.
+  cursor: String!
+
+  # The item at the end of ImageEdge.
+  node: Image!
+}
+
+# Represents an image resource.
+type Image  implements Node{
+  # A unique identifier for the image.
+  id: ID!
+
+  # A word or phrase to share the nature or contents of an image.
+  altText: String
+
+  # The location of the image as a URL.
+  src: URL!
+}
