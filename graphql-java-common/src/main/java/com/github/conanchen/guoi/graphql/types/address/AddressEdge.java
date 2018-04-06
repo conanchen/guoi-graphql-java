@@ -1,7 +1,5 @@
 package com.github.conanchen.guoi.graphql.types.address;
 
-import com.github.conanchen.guoi.graphql.types.common.Address;
-
 //types MailingAddressEdge {
 //        # A cursor for use in pagination.
 //        cursor: String!
