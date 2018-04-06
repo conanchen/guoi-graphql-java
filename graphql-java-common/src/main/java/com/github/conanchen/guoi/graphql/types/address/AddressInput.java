@@ -1,4 +1,4 @@
-package com.github.conanchen.guoi.graphql.types.common;
+package com.github.conanchen.guoi.graphql.types.address;
 
 public class AddressInput {
     private final String address1;//    address1: String

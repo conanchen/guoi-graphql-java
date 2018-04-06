@@ -1,4 +1,4 @@
-package com.github.conanchen.guoi.graphql.types.common;
+package com.github.conanchen.guoi.graphql.types.image;
 
 public class Image {
     //  # A unique identifier for the image.

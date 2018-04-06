@@ -1,4 +1,4 @@
-package com.github.conanchen.guoi.graphql.types.common;
+package com.github.conanchen.guoi.graphql.enums;
 
 public enum WeightUnit {
 //  # 1 equals 1000 grams

@@ -1,4 +1,6 @@
-package com.github.conanchen.guoi.graphql.types.common;
+package com.github.conanchen.guoi.graphql.types.image;
+
+import com.github.conanchen.guoi.graphql.types.common.PageInfo;
 
 import java.util.List;
 

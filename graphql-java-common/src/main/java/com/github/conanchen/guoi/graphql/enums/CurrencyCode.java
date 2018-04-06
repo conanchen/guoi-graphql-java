@@ -1,4 +1,4 @@
-package com.github.conanchen.guoi.graphql.types.common;
+package com.github.conanchen.guoi.graphql.enums;
 
 //# Currency codes
 public enum CurrencyCode {

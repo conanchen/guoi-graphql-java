@@ -1,4 +1,4 @@
-package com.github.conanchen.guoi.graphql.types.common;
+package com.github.conanchen.guoi.graphql.types.address;
 
 //types MailingAddressConnection {
 //        # A list of edges.
@@ -7,6 +7,8 @@ package com.github.conanchen.guoi.graphql.types.common;
 //        # Information to aid in pagination.
 //        pageInfo: PageInfo!
 //        }
+
+import com.github.conanchen.guoi.graphql.types.common.PageInfo;
 
 import java.util.List;
 

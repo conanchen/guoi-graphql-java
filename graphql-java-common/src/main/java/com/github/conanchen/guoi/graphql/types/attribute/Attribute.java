@@ -1,4 +1,4 @@
-package com.github.conanchen.guoi.graphql.types.common;
+package com.github.conanchen.guoi.graphql.types.attribute;
 
 public class Attribute {
     //      # Key or name of the attribute.
