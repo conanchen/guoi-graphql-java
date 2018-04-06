@@ -1,0 +1,8 @@
+
+# Information about pagination in a connection.
+type Types {
+
+  image: Image
+  address: Address
+
+}
