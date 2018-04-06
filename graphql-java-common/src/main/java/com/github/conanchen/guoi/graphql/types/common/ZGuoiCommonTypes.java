@@ -14,11 +14,11 @@ package com.github.conanchen.guoi.graphql.types.common;
 //        # When paginating backwards, the cursor to continue.
 //        startCursor: String
 //}
-public class Types {
+public class ZGuoiCommonTypes {
     private Image image;//    image: Image
     private Address address;//    address: Address
 
-    public Types(Image image, Address address) {
+    public ZGuoiCommonTypes(Image image, Address address) {
         this.image = image;
         this.address = address;
     }

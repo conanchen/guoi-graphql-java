@@ -1,6 +1,6 @@
 
 # Information about pagination in a connection.
-type Types {
+type ZGuoiCommonTypes {
 
   image: Image
   address: Address
