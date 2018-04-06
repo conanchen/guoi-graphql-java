@@ -57,12 +57,22 @@ dependencies {
 ## Step 3. Import the library configuration into your project configuration to use the common scalars
 ```java
 @Configuration
-@Import(ZGraphQLScalarsAutoConfiguration.class)
+@Import(ZGuoiScalarsAutoConfiguration.class)
 public class ZYourGraphqlConfiguration {
     //...
 }    
 ```
+## Step 4. include ZGuoiCommonTypes in your root query
+```graphql
+# The Root Query 
+type Query {
 
+  # ...
+  
+  zGuoiCommonTypes: ZGuoiCommonTypes
+}
+
+```
 # GUOI Graphql API Design Guide
 - Refer to [graph.cool Graphql API](https://www.graph.cool/docs/reference/graphql-api/overview-abogasd0go)
 - Refer to [Customize GUOI Graphql API Design Guide](GUOI_GRAPHQL_API_DESIGN_GUIDE.md)
