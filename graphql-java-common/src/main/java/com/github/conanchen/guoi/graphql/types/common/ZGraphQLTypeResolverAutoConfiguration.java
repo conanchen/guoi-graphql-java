@@ -17,4 +17,11 @@ public class ZGraphQLTypeResolverAutoConfiguration {
     }
 
 
+    @Bean
+    @ConditionalOnMissingBean
+    public ImageResolver imageResolver() {
+        return new ImageResolver();
+    }
+
+
 }
