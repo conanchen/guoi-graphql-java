@@ -1,29 +1,17 @@
 package com.github.conanchen.guoi.graphql.types.address;
 
-public class AddressInput {
-    private final String address1;//    address1: String
-    private final String address2;//    address2: String
-    private final String city;//    city: String
-    private final String company;//    company: String
-    private final String country;//    country: String
-    private final String firstName;//    firstName: String
-    private final String lastName;//    lastName: String
-    private final String phone;//    phone: String
-    private final String province;//    province: String
-    private final String zip;//    zip: String
+import lombok.Data;
 
-    public AddressInput(String address1, String address2, String city, String company,
-                        String country, String firstName, String lastName, String phone,
-                        String province, String zip) {
-        this.address1 = address1;
-        this.address2 = address2;
-        this.city = city;
-        this.company = company;
-        this.country = country;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.province = province;
-        this.zip = zip;
-    }
+@Data
+public class AddressInput {
+    private String address1;//    address1: String
+    private String address2;//    address2: String
+    private String city;//    city: String
+    private String company;//    company: String
+    private String country;//    country: String
+    private String firstName;//    firstName: String
+    private String lastName;//    lastName: String
+    private String phone;//    phone: String
+    private String province;//    province: String
+    private String zip;//    zip: String
 }
