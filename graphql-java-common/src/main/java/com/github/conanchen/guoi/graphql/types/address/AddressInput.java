@@ -1,7 +1,9 @@
 package com.github.conanchen.guoi.graphql.types.address;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Data
 public class AddressInput {
     private String address1;//    address1: String
