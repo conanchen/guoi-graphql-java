@@ -1,14 +1,58 @@
 # Specifies the fields accepted to create or update a address.
 input AddressInput {
+  # Address line 1 (Street address/PO Box/Company name).
   address1: String
+
+  # Address line 2 (Apartment/Suite/Unit/Building).
   address2: String
+
+  # City/District/Suburb/Town/Village.
   city: String
+
+  # Company/Organization/Government.
   company: String
+
+  # State/County/Province/Region.
   country: String
+
+  # Two-letter country code.
+  #
+  # For example, US.
+  countryCode: String
+
+  # First name of the customer.
   firstName: String
+  #formatted(withName: Boolean = false, withCompany: Boolean = true): [String!]!
+
+  # Comma-separated list of city, province, and country.
+  formattedArea: String
+
+  # Last name of the customer.
   lastName: String
+
+  # Latitude coordinate of the customer address.
+  latitude: Float
+
+  # Longitude coordinate of the customer address.
+  longitude: Float
+
+  # Name of the customer, based on first name + last name.
+  name: String
+
+  # Unique phone number for the customer.
+  #
+  # Formatted using E.164 standard. For example, _+16135551111_.
   phone: String
+
+  # State/County/Province/Region.
   province: String
+
+  # Two-letter province or state code.
+  #
+  # For example, ON.
+  provinceCode: String
+
+  # Zip/Postal Code.
   zip: String
 }
 
