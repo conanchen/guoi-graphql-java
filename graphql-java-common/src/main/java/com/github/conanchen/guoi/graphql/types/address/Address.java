@@ -1,7 +1,13 @@
 package com.github.conanchen.guoi.graphql.types.address;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Data
 public class Address {
     //  # Globally unique identifier.
