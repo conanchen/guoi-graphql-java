@@ -2,6 +2,9 @@ package com.github.conanchen.guoi.graphql.types.scalars;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.TextStyle;
+import java.time.temporal.ChronoField;
 import java.util.Date;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -14,10 +17,20 @@ public class DateTimeHelper {
 
     public static final CopyOnWriteArrayList<DateTimeFormatter> DATE_FORMATTERS = new CopyOnWriteArrayList<>();
 
+
     static {
         DATE_FORMATTERS.add(DateTimeFormatter.ISO_INSTANT.withZone(ZoneOffset.UTC));
         DATE_FORMATTERS.add(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneOffset.UTC));
         DATE_FORMATTERS.add(DateTimeFormatter.ISO_LOCAL_DATE.withZone(ZoneOffset.UTC));
+        //2012-09-11 11:30
+        DATE_FORMATTERS.add(new DateTimeFormatterBuilder()
+                .parseCaseInsensitive()
+                .append(DateTimeFormatter.ISO_LOCAL_DATE)
+                .appendLiteral(" ")
+                .appendValue(ChronoField.HOUR_OF_DAY)
+                .appendLiteral(":")
+                .appendText(ChronoField.MINUTE_OF_HOUR, TextStyle.NARROW_STANDALONE)
+                .toFormatter());
     }
 
     // ISO_8601
@@ -96,5 +109,4 @@ public class DateTimeHelper {
         LocalDateTime localDateTime = LocalDateTime.of(year, month, day, hours, min, sec, (int) nanos);
         return DateTimeHelper.toDate(localDateTime);
     }
-
 }
