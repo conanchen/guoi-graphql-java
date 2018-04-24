@@ -4,5 +4,5 @@ type ZGuoiCommonTypes {
 
   image: Image
   address: Address
-
+  attribute: Attribute
 }
