@@ -1,6 +1,10 @@
 package com.github.conanchen.guoi.graphql.util;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BeanUtil {
 
@@ -61,7 +65,7 @@ public class BeanUtil {
             for (Method method : methods) {
                 String name = method.getName();
 
-                if ((name.startsWith("set") || name.startsWith("addAll")) && !(name.endsWith("Value")||name.endsWith("Field") || name.endsWith("Fields") || name.endsWith("Bytes"))) {
+                if ((name.startsWith("set") || name.startsWith("add")) && !(name.startsWith("addAll") || name.endsWith("Value")||name.endsWith("Field") || name.endsWith("Fields") || name.endsWith("Bytes"))) {
 
                     Class[] paramClss = method.getParameterTypes();
 
@@ -71,20 +75,31 @@ public class BeanUtil {
                             System.out.println(name + "(" + paramName + ")");
 
                             String getMethodName = name.replace("set", "get");
-                            if (name.startsWith("addAll"))
-                                getMethodName = name.replace("addAll", "get") + "s";
+                            if (name.startsWith("add"))
+                                getMethodName = name.replace("add", "get") + "s";
                             try {
                                 Method getMethod = cls.getMethod(getMethodName);
                                 Object ret = getMethod.invoke(srcBean); //get方法返回值   Address
 //                                if(!isNullObject(ret,false)){
+
                                 if(ret != null && !"".equals(ret.toString()) && !"0.0".equals(ret.toString())) {
                                     if (paramName.startsWith("java") || paramClss[0].getPackage() == null ) {
-                                        method.invoke(grpcB, ret);  //赋值给grpc的set方法
+                                        if(ret instanceof java.lang.Iterable) {
+                                            for(Object obj : (Iterable) ret){
+                                                method.invoke(grpcB,toGrpc(obj,paramClss[0]));
+                                            }
+                                        }else{
+                                            method.invoke(grpcB,ret);
+                                        }
                                     } else {
                                         //复杂类型
                                         if(ret instanceof  Enum) {
                                             Object val = ret.getClass().getMethod("name").invoke(ret);
                                             method.invoke(grpcB, paramClss[0].getMethod("valueOf",String.class).invoke(null,val));   //执行set方法
+                                        }else if(ret instanceof java.lang.Iterable) {
+                                            for(Object obj : (Iterable) ret){
+                                                method.invoke(grpcB,toGrpc(obj,paramClss[0]));
+                                            }
                                         }else{
                                             method.invoke(grpcB, toGrpc(ret, paramClss[0]));
                                         }
@@ -114,16 +129,16 @@ public class BeanUtil {
             Method[] methods = grpcCls.getMethods();
             for (Method method : methods) {
                 String name = method.getName();
-                if (name.startsWith("get") && !(name.endsWith("Class") || name.endsWith("DefaultInstance") || name.endsWith("SerializedSize") || name.endsWith("Descriptor") || name.endsWith("Field") || name.endsWith("Fields") || name.endsWith("Bytes") || name.endsWith("Builder") || name.endsWith("ForType") || name.endsWith("ErrorString") || name.endsWith("FieldCount"))) {
+                if (name.startsWith("get") && !(name.endsWith("Class") || name.endsWith("DefaultInstance") || name.endsWith("SerializedSize") || name.endsWith("Descriptor") || name.endsWith("Field") || name.endsWith("Fields") || name.endsWith("Bytes") || name.endsWith("Builder") || name.endsWith("Builders") || name.endsWith("ForType") || name.endsWith("ErrorString") || name.endsWith("FieldCount"))) {
                     if (!method.getReturnType().getName().contains("com.google.protobuf")) {
+                        Class retCls = method.getReturnType();
                         if (method.getParameterCount() == 0) {
-                            Object ret = method.invoke(grpcBean);
-//                            System.out.println("ret ====== " + ret.toString());
+                            Object ret = method.invoke(grpcBean); //grpc get方法取值
                             if(ret != null && !"".equals(ret.toString()) && !"0.0".equals(ret.toString())) {
 //                            if(!isNullObject(ret,false)){
-                                Class retCls = method.getReturnType();
 
                                 String setMethodName = name.replace("get", "set");
+
 
                                 Method[] clsMethods = cls.getMethods();
                                 for (Method clsMethod : clsMethods) {
@@ -134,7 +149,6 @@ public class BeanUtil {
                                         } else {
                                             System.out.println(name + "    " + retCls.getName());
                                             if(ret instanceof Enum) {
-
                                                 Object val = ret.getClass().getMethod("name").invoke(ret);
 
                                                 clsMethod.invoke(bean, clsMethod.getParameterTypes()[0].getMethod("valueOf",String.class).invoke(null,val));   //执行set方法
@@ -145,6 +159,37 @@ public class BeanUtil {
                                         }
                                     }
                                 }
+                            }
+                        }else if(method.getParameterCount() == 1){
+                            Method cntMethod = grpcCls.getMethod(method.getName() + "Count");
+                            if(null != cntMethod){
+                                String setMethodName = method.getName().replace("get","set") + "s";
+                                String fieldName = method.getName().replace("get","") + "s";
+                                Type t = cls.getDeclaredField(toLowerCaseFirstOne(fieldName)).getGenericType();
+
+                                Type t1 = null;
+                                if (ParameterizedType.class.isAssignableFrom(t.getClass())) {
+                                    t1 = ((ParameterizedType) t).getActualTypeArguments()[0];
+                                }
+
+                                Method[] clsMethods = cls.getMethods();
+                                for (Method setMethod : clsMethods) {
+                                    if (setMethod.getName().equals(setMethodName)) {
+
+                                        Integer cnt = (Integer)cntMethod.invoke(grpcBean,null);
+                                        if(null != cnt){
+                                            List list = new ArrayList();
+                                            for(int i=0;i<cnt;i++){
+                                                Object val = method.invoke(grpcBean,i);
+                                                Object obj = fromGrpc(val,Class.forName(t1.getTypeName())); //getServiceRange(1);
+                                                list.add(obj);
+                                            }
+                                            setMethod.invoke(bean,list);
+                                        }
+                                    }
+                                }
+
+
                             }
                         }
                     }
@@ -158,23 +203,16 @@ public class BeanUtil {
         return null;
     }
 
+    public static String toLowerCaseFirstOne(String s){
+        if(Character.isLowerCase(s.charAt(0)))
+            return s;
+        else
+            return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
+    }
 
-//    public static void main(String[] args) throws Exception {
 
-//        Org8n org8n = new Org8n();
-//        org8n.setStatus(1);
-//        org8n.setParent(new Org8n("ddddddd"));
-//        org8n.setTheme("default");
-//        org8n.setType(Org8nType.STATION);
-//        Address addr1 = new Address();
-//        addr1.setAddress1("地址1");
-//        addr1.setAddress2("地址2");
-//        addr1.setProvince("省份");
-//        org8n.setAddress(addr1);
-//        com.github.conanchen.guoi.cloud.org8n.Org8n org = (com.github.conanchen.guoi.cloud.org8n.Org8n)toGrpc(org8n,com.github.conanchen.guoi.cloud.org8n.Org8n.class);
-//        System.out.println(org.getType().name());
-//
-//        org8n = (Org8n)fromGrpc(org,Org8n.class);
-//        System.out.println(org8n.getType());
-//    }
+    public static void main(String[] args) throws Exception {
+
+
+    }
 }
