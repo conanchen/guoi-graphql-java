@@ -61,10 +61,4 @@ public class AddressInput {
     //
 //  # Zip/Postal Code.
     private String zip;//    zip: String
-
-//  # Position lng
-    private Float lng;//    lng: Float
-
-//  # Position lat
-    private Float lat;//    lat: Float
 }
