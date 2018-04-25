@@ -9,6 +9,10 @@ public class UserError {
 //            # The error message.
     private String message = "ok";//            message: String!
 
+    public UserError(){
+
+    }
+
     public UserError(List<String> field, String message) {
         this.field = field;
         this.message = message;
