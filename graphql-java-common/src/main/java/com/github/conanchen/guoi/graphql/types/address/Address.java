@@ -67,5 +67,5 @@ public class Address {
     //
 //  # Zip/Postal Code.
     private String zip;//    zip: String
-    
+
 }
