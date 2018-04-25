@@ -160,36 +160,41 @@ public class BeanUtil {
                                     }
                                 }
                             }
-                        }else if(method.getParameterCount() == 1){
-                            Method cntMethod = grpcCls.getMethod(method.getName() + "Count");
-                            if(null != cntMethod){
-                                String setMethodName = method.getName().replace("get","set") + "s";
-                                String fieldName = method.getName().replace("get","") + "s";
-                                Type t = cls.getDeclaredField(toLowerCaseFirstOne(fieldName)).getGenericType();
+                        }else if(method.getParameterCount() == 1) {
+                            try{
+                                Method cntMethod = grpcCls.getMethod(method.getName() + "Count");
+                                if (null != cntMethod) {
+                                    String setMethodName = method.getName().replace("get", "set") + "s";
+                                    String fieldName = method.getName().replace("get", "") + "s";
+                                    Type t = cls.getDeclaredField(toLowerCaseFirstOne(fieldName)).getGenericType();
 
-                                Type t1 = null;
-                                if (ParameterizedType.class.isAssignableFrom(t.getClass())) {
-                                    t1 = ((ParameterizedType) t).getActualTypeArguments()[0];
-                                }
+                                    Type t1 = null;
+                                    if (ParameterizedType.class.isAssignableFrom(t.getClass())) {
+                                        t1 = ((ParameterizedType) t).getActualTypeArguments()[0];
+                                    }
 
-                                Method[] clsMethods = cls.getMethods();
-                                for (Method setMethod : clsMethods) {
-                                    if (setMethod.getName().equals(setMethodName)) {
+                                    Method[] clsMethods = cls.getMethods();
+                                    for (Method setMethod : clsMethods) {
+                                        if (setMethod.getName().equals(setMethodName)) {
 
-                                        Integer cnt = (Integer)cntMethod.invoke(grpcBean,null);
-                                        if(null != cnt){
-                                            List list = new ArrayList();
-                                            for(int i=0;i<cnt;i++){
-                                                Object val = method.invoke(grpcBean,i);
-                                                Object obj = fromGrpc(val,Class.forName(t1.getTypeName())); //getServiceRange(1);
-                                                list.add(obj);
+                                            Integer cnt = (Integer) cntMethod.invoke(grpcBean, null);
+                                            if (null != cnt) {
+                                                List list = new ArrayList();
+                                                for (int i = 0; i < cnt; i++) {
+                                                    Object val = method.invoke(grpcBean, i);
+                                                    Object obj = fromGrpc(val, Class.forName(t1.getTypeName())); //getServiceRange(1);
+                                                    list.add(obj);
+                                                }
+                                                setMethod.invoke(bean, list);
                                             }
-                                            setMethod.invoke(bean,list);
                                         }
                                     }
+
+
                                 }
-
-
+                            }catch (Exception ee){
+                                System.out.println(ee.getMessage());
+                                continue;
                             }
                         }
                     }
