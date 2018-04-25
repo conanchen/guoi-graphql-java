@@ -182,8 +182,12 @@ public class BeanUtil {
                                                 List list = new ArrayList();
                                                 for (int i = 0; i < cnt; i++) {
                                                     Object val = method.invoke(grpcBean, i);
-                                                    Object obj = fromGrpc(val, Class.forName(t1.getTypeName())); //getServiceRange(1);
-                                                    list.add(obj);
+                                                    if(t1.getTypeName().startsWith("java")){
+                                                        list.add(val);
+                                                    }else {
+                                                        Object obj = fromGrpc(val, Class.forName(t1.getTypeName())); //getServiceRange(1);
+                                                        list.add(obj);
+                                                    }
                                                 }
                                                 setMethod.invoke(bean, list);
                                             }
