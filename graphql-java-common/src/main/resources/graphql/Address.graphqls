@@ -54,6 +54,12 @@ input AddressInput {
 
   # Zip/Postal Code.
   zip: String
+
+  # Position lng
+  lng: Float
+
+  # Position lat
+  lat: Float
 }
 
 type AddressConnection {
@@ -131,5 +137,11 @@ type Address implements Node {
 
   # Zip/Postal Code.
   zip: String
+
+  # Position lng
+  lng: Float
+
+  # Position lat
+  lat: Float
 }
 
