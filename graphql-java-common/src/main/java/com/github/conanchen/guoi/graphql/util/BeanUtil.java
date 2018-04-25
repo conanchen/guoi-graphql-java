@@ -86,7 +86,11 @@ public class BeanUtil {
                                     if (paramName.startsWith("java") || paramClss[0].getPackage() == null ) {
                                         if(ret instanceof java.lang.Iterable) {
                                             for(Object obj : (Iterable) ret){
-                                                method.invoke(grpcB,toGrpc(obj,paramClss[0]));
+                                                if(paramClss[0].getName().startsWith("java")) {
+                                                    method.invoke(grpcB, obj);
+                                                }else{
+                                                    method.invoke(grpcB, toGrpc(obj, paramClss[0]));
+                                                }
                                             }
                                         }else{
                                             method.invoke(grpcB,ret);
