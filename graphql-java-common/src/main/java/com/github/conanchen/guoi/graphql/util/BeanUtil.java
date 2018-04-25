@@ -11,7 +11,7 @@ public class BeanUtil {
     /**
      * 普通Bean转换
      */
-    public static Object convert(Object srcBean,Class dstCls){
+    public static <T> T convert(Object srcBean,Class<T> dstCls){
 
         try {
             Class srcCls = srcBean.getClass();
@@ -44,7 +44,7 @@ public class BeanUtil {
                     }
                 }
             }
-            return dstBean;
+            return (T)dstBean;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,7 +54,7 @@ public class BeanUtil {
     /**
      * mongoBean转为grpcBean
      */
-    public static Object toGrpc(Object srcBean,Class grpcCls) {
+    public static <T> T toGrpc(Object srcBean,Class<T> grpcCls) {
         try {
             Class cls = srcBean.getClass();
             Object grpcB = grpcCls.getMethod("newBuilder").invoke(null);
@@ -118,7 +118,7 @@ public class BeanUtil {
                 }
             }
             Object ret = clsG.getMethod("build").invoke(grpcB);
-            return ret;
+            return (T) ret;
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -126,7 +126,7 @@ public class BeanUtil {
     }
 
     //grpcBean转为普通Bean
-    public static Object fromGrpc(Object grpcBean,Class cls) {
+    public static <T> T fromGrpc(Object grpcBean,Class<T> cls) {
         try {
             Object bean = cls.newInstance();
             Class grpcCls = grpcBean.getClass();
@@ -209,7 +209,7 @@ public class BeanUtil {
 
                 }
             }
-            return bean;
+            return (T)bean;
         }catch (Exception e){
             e.printStackTrace();
         }
