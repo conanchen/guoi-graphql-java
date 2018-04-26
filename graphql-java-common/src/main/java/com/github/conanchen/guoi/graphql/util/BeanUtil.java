@@ -72,7 +72,7 @@ public class BeanUtil {
                     if (paramClss.length == 1) {
                         String paramName = paramClss[0].getName();
                         if (!paramName.contains("$Builder")) {
-                            System.out.println(name + "(" + paramName + ")");
+                            //System.out.println(name + "(" + paramName + ")");
 
                             String getMethodName = name.replace("set", "get");
                             if (name.startsWith("add"))
@@ -151,7 +151,7 @@ public class BeanUtil {
                                         if (retCls.getName().startsWith("java") || retCls.getPackage() == null) {
                                             clsMethod.invoke(bean, ret);
                                         } else {
-                                            System.out.println(name + "    " + retCls.getName());
+//                                            System.out.println(name + "    " + retCls.getName());
                                             if(ret instanceof Enum) {
                                                 Object val = ret.getClass().getMethod("name").invoke(ret);
 
