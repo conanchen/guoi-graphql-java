@@ -43,6 +43,8 @@ allprojects {
     }
     repositories {
         maven { url "http://192.168.1.41:8081/nexus/content/repositories/central" }
+        maven { url "http://192.168.1.41:8081/nexus/content/repositories/releases" }
+        maven { url "http://192.168.1.41:8081/nexus/content/repositories/snapshots" }
     }
 }
 
