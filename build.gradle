@@ -1,18 +1,19 @@
 buildscript {
     apply from: "$rootDir/blessedDeps.gradle"
     repositories {
-        mavenCentral()
-        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "http://192.168.1.41:8081/nexus/content/repositories/central" }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
     }
 }
 
 allprojects {
     apply plugin: 'java'
-    group = '${group}'
-    version = '${version}'
+    apply plugin: 'com.bmuschko.nexus'
+    group = 'com.github.conanchen'
+    version = 'master-SNAPSHOT'
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -25,6 +26,23 @@ allprojects {
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
+    }
+    repositories {
+        maven { url "http://192.168.1.41:8081/nexus/content/repositories/central" }
+    }
+    extraArchive {
+        sources = false
+        tests = false
+        javadoc = false
+    }
+
+    nexus {
+        sign = true
+        repositoryUrl = 'http://192.168.1.41:8081/nexus/content/repositories/releases/'
+        snapshotRepositoryUrl = 'http://192.168.1.41:8081/nexus/content/repositories/snapshots/'
+    }
+    repositories {
+        maven { url "http://192.168.1.41:8081/nexus/content/repositories/central" }
     }
 }
 
@@ -47,11 +65,6 @@ subprojects {
         archives javadocJar
     }
 
-}
-repositories {
-    mavenCentral()
-    jcenter()
-    maven { url 'https://jitpack.io' }
 }
 
 configurations.all {
