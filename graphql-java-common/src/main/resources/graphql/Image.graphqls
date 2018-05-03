@@ -26,3 +26,12 @@ type Image  implements Node{
   # The location of the image as a URL.
   src: URL!
 }
+
+
+input ImageInput {
+  # A word or phrase to share the nature or contents of an image.
+  altText: String
+
+  # The location of the image as a URL.
+  src: URL!
+}
