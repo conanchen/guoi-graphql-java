@@ -339,3 +339,6 @@ mutation AddReactionToIssue {
 }
 ```
 ## Refer to [https://developer.github.com/v4/guides/forming-calls/#example-mutation](https://developer.github.com/v4/guides/forming-calls/#example-mutation)
+
+# Pagination
+> In general, we've found that cursor-based pagination is the most powerful of those designed. Especially if the cursors are opaque, either offset or ID-based pagination can be implemented `using cursor-based pagination` (by making the cursor the offset or the ID), and using cursors gives additional flexibility if the pagination model changes in the future. As a reminder that the cursors are opaque and that their format should not be relied upon, we suggest `base64 encoding` them.
