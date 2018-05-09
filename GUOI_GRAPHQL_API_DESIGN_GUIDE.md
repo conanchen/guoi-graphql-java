@@ -342,3 +342,35 @@ mutation AddReactionToIssue {
 
 # Pagination
 > In general, we've found that cursor-based pagination is the most powerful of those designed. Especially if the cursors are opaque, either offset or ID-based pagination can be implemented `using cursor-based pagination` (by making the cursor the offset or the ID), and using cursors gives additional flexibility if the pagination model changes in the future. As a reminder that the cursors are opaque and that their format should not be relied upon, we suggest `base64 encoding` them.
+
+>  Pagination allows you to request a certain amount of nodes at the same time. You can seek forwards or backwards through the nodes and supply an optional starting node:
+   - to seek forwards, use first; specify a starting node with after.
+   - to seek backwards, use last; specify a starting node with before.
+```javascript
+# A list of hello.
+  hellos(
+
+    # Returns the elements in the list that come after the specified global ID.
+    after: String
+
+    # Returns the elements in the list that come before the specified global ID.
+    before: String
+
+    # Returns the first _n_ elements from the list.
+    first: Int
+
+    # Returns the last _n_ elements from the list.
+    last: Int
+
+    # Skip the _n_ elements from the list.
+    skip: Int
+
+    # Filter condition
+    filter: HelloFilterInput
+
+    # Order options for hellos return from the connection
+    orderBy: HelloOrderByInput
+
+  ): HelloConnection!
+
+```
