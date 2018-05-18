@@ -9,7 +9,7 @@ Every type has the DateTime fields createdAt and updatedAt that will be set auto
    Query all Post nodes with a title that contains the string biggest:
 ```javascript
 query {
-  allPosts(filter: {
+  posts(filter: {
     title_contains: "biggest"
   }) {
     id
@@ -30,7 +30,7 @@ When querying all nodes of a model type you can supply the orderBy argument for 
 - Order the list of all Post nodes ascending by title:
 ```javascript
 query {
-  allPosts(orderBy: title_ASC) {
+  posts(orderBy: title_ASC) {
     id
     title
     published
@@ -40,7 +40,7 @@ query {
 - Order the list of all Post nodes descending by published:
 ```javascript
 query {
-  allPosts(orderBy: published_DESC) {
+  posts(orderBy: published_DESC) {
     id
     title
     published
@@ -62,7 +62,7 @@ The easiest way to filter a query response is by supplying a field value to filt
 Query all Post nodes that are not yet published:
 ```javascript
 query {
-  allPosts(filter: {
+  posts(filter: {
     published: false
   }) {
     id
@@ -78,7 +78,7 @@ Depending on the type of the field you want to filter by, you have access to dif
 Query all Post nodes whose title is in a given list of strings:
 ```javascript
 query {
-  allPosts(filter: {
+  posts(filter: {
     title_in: ["My biggest Adventure", "My latest Hobbies"]
   }) {
     id
@@ -95,7 +95,7 @@ For to-one relations, you can define conditions on the related node by nesting t
 Query all Post nodes where the author has the USER access role:
 ```javascript
 query {
-  allPosts(filter: {
+  posts(filter: {
     author: {
       accessRole: USER
     }
@@ -116,7 +116,7 @@ Let's start with an easy example:
 Query all Post nodes that are published and whose title is in a given list of strings:
 ```javascript
 query {
-  allPosts(filter: {
+  posts(filter: {
     AND: [{
       title_in: ["My biggest Adventure", "My latest Hobbies"]
     }, {
@@ -136,7 +136,7 @@ You can combine and even nest the filter combinators AND and OR to create arbitr
 Query all Post nodes that are either published and whose title is in a list of given strings, or have the specific id we supply:
 ```javascript
 query($published: Boolean) {
-  allPosts(filter: {
+  posts(filter: {
     OR: [{
       AND: [{
         title_in: ["My biggest Adventure", "My latest Hobbies"]
@@ -263,7 +263,7 @@ You can also skip an arbitrary amount of nodes in whichever direction you are se
 Consider a blog where only 3 Post nodes are shown at the front page. To query the first page:
 ```javascript
 query {
-  allPosts(first: 3) {
+  posts(first: 3) {
     id
     title
   }
@@ -273,7 +273,7 @@ query {
 To query the first two Post node after the first Post node:
 ```javascript
 query {
-  allPosts(
+  posts(
     first: 2
     after: "cixnen24p33lo0143bexvr52n"
   ) {
@@ -286,7 +286,7 @@ query {
 Query the last 2 posts:
 ```javascript
 query {
-  allPosts(last: 2) {
+  posts(last: 2) {
     id
     title
   }
@@ -295,3 +295,82 @@ query {
 ```
 
 > Note: You cannot combine first with before or last with after. If you query more nodes than exist, your response will simply contain all nodes that actually do exist in that direction.
+
+# About mutations
+To form a mutation, you must specify three things:
+
+>1. Mutation name. The type of modification you want to perform.
+>2. Input object. The data you want to send to the server, composed of input fields. Pass it as an argument to the mutation name.
+>3. Payload object. The data you want to return from the server, composed of return fields. Pass it as the body of the mutation name.
+Mutations are structured like this:
+```javascript
+mutation {
+  mutationName(input: {MutationNameInput!}) {
+    MutationNamePayload
+}
+```
+The input object in this example is `MutationNameInput`, and the payload object is `MutationNamePayload`.
+
+In the mutations reference, the listed input fields are what you pass as the input object. The listed return fields are what you pass as the payload object.
+
+## Example mutation
+   Mutations often require information that you can only find out by performing a query first. This example shows two operations:
+   
+>1. A query to get an issue ID.
+>2. A mutation to add an emoji reaction to the issue.
+```javascript
+query FindIssueID {
+  repository(owner:"octocat", name:"Hello-World") {
+    issue(number:349) {
+      id
+    }
+  }
+}
+
+mutation AddReactionToIssue {
+  addReaction(input:{subjectId:"MDU6SXNzdWUyMzEzOTE1NTE=",content:HOORAY}) {
+    reaction {
+      content
+    }
+    subject {
+      id
+    }
+  }
+}
+```
+## Refer to [https://developer.github.com/v4/guides/forming-calls/#example-mutation](https://developer.github.com/v4/guides/forming-calls/#example-mutation)
+
+# Pagination
+> In general, we've found that cursor-based pagination is the most powerful of those designed. Especially if the cursors are opaque, either offset or ID-based pagination can be implemented `using cursor-based pagination` (by making the cursor the offset or the ID), and using cursors gives additional flexibility if the pagination model changes in the future. As a reminder that the cursors are opaque and that their format should not be relied upon, we suggest `base64 encoding` them.
+
+>  Pagination allows you to request a certain amount of nodes at the same time. You can seek forwards or backwards through the nodes and supply an optional starting node:
+   - to seek forwards, use first; specify a starting node with after.
+   - to seek backwards, use last; specify a starting node with before.
+```javascript
+# A list of hello.
+  hellos(
+
+    # Returns the elements in the list that come after the specified global ID.
+    after: String
+
+    # Returns the elements in the list that come before the specified global ID.
+    before: String
+
+    # Returns the first _n_ elements from the list.
+    first: Int
+
+    # Returns the last _n_ elements from the list.
+    last: Int
+
+    # Skip the _n_ elements from the list.
+    skip: Int
+
+    # Filter condition
+    filter: HelloFilterInput
+
+    # Order options for hellos return from the connection
+    orderBy: HelloOrderByInput
+
+  ): HelloConnection!
+
+```
