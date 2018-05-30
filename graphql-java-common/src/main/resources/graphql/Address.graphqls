@@ -9,12 +9,19 @@ input AddressInput {
   # City/District/Suburb/Town/Village.
   city: String
 
+  cityCode:String
+
   # Company/Organization/Government.
   company: String
 
   # State/County/Province/Region.
   country: String
 
+  town:String
+  townCode:String
+
+  village:String
+  villageCode:String
   # Two-letter country code.
   #
   # For example, US.
@@ -85,6 +92,13 @@ type Address implements Node {
 
   # City/District/Suburb/Town/Village.
   city: String
+  cityCode: String
+
+  town:String
+  townCode:String
+
+  village:String
+  villageCode:String
 
   # Company/Organization/Government.
   company: String

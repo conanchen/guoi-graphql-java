@@ -15,6 +15,14 @@ public class AddressInput {
     //
 //  # City/District/Suburb/Town/Village.
     private String city;//            city: String
+
+    private String cityCode;
+
+    private String town;
+    private String townCode;
+
+    private String village;
+    private String villageCode;
     //
 //  # Company/Organization/Government.
     private String company;//            company: String
