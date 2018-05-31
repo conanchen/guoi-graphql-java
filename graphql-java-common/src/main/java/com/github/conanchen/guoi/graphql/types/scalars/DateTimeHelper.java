@@ -24,12 +24,23 @@ public class DateTimeHelper {
         DATE_FORMATTERS.add(DateTimeFormatter.ISO_LOCAL_DATE.withZone(ZoneOffset.UTC));
         //2012-09-11 11:30
         DATE_FORMATTERS.add(new DateTimeFormatterBuilder()
+                        .parseCaseInsensitive()
+                        .append(DateTimeFormatter.ISO_LOCAL_DATE)
+                        .appendLiteral(" ")
+                        .appendValue(ChronoField.HOUR_OF_DAY)
+                        .appendLiteral(":")
+                        .appendText(ChronoField.MINUTE_OF_HOUR)
+                        .toFormatter());
+        //2012-09-11 11:30:00
+        DATE_FORMATTERS.add(new DateTimeFormatterBuilder()
                 .parseCaseInsensitive()
                 .append(DateTimeFormatter.ISO_LOCAL_DATE)
                 .appendLiteral(" ")
                 .appendValue(ChronoField.HOUR_OF_DAY)
                 .appendLiteral(":")
-                .appendText(ChronoField.MINUTE_OF_HOUR, TextStyle.NARROW_STANDALONE)
+                .appendText(ChronoField.MINUTE_OF_HOUR)
+                .appendLiteral(":")
+                .appendText(ChronoField.SECOND_OF_MINUTE)
                 .toFormatter());
     }
 
@@ -94,6 +105,20 @@ public class DateTimeHelper {
         }
 
         return null;
+    }
+    public static LocalDate parseDate(String date) {
+        Objects.requireNonNull(date, "date");
+                // equals ISO_LOCAL_DATE
+                if (formatter.equals(DATE_FORMATTERS.get(2))) {
+                    LocalDate localDate = LocalDate.parse(date, formatter);
+
+                    return localDate.atStartOfDay();
+                } else {
+                    return LocalDateTime.parse(date, formatter);
+                }
+            } catch (java.time.format.DateTimeParseException ignored) {
+            }
+
     }
 
     public static Date createDate(int year, int month, int day) {
