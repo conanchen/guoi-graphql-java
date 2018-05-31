@@ -2,9 +2,6 @@ package com.github.conanchen.guoi.graphql.types.scalars;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.TextStyle;
-import java.time.temporal.ChronoField;
 import java.util.Date;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -17,31 +14,20 @@ public class DateTimeHelper {
 
     public static final CopyOnWriteArrayList<DateTimeFormatter> DATE_FORMATTERS = new CopyOnWriteArrayList<>();
 
-
     static {
-        DATE_FORMATTERS.add(DateTimeFormatter.ISO_INSTANT.withZone(ZoneOffset.UTC));
-        DATE_FORMATTERS.add(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneOffset.UTC));
-        DATE_FORMATTERS.add(DateTimeFormatter.ISO_LOCAL_DATE.withZone(ZoneOffset.UTC));
-        //2012-09-11 11:30
-        DATE_FORMATTERS.add(new DateTimeFormatterBuilder()
-                        .parseCaseInsensitive()
-                        .append(DateTimeFormatter.ISO_LOCAL_DATE)
-                        .appendLiteral(" ")
-                        .appendValue(ChronoField.HOUR_OF_DAY)
-                        .appendLiteral(":")
-                        .appendText(ChronoField.MINUTE_OF_HOUR)
-                        .toFormatter());
+        //2018-05-31T14:20:12.894Z
+        DATE_FORMATTERS.add(DateTimeFormatter.ISO_INSTANT.withZone(ZoneId.systemDefault()));
+        //2018-05-31T22:10:59.254
+        DATE_FORMATTERS.add(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault()));
+        //2018-05-31
+        DATE_FORMATTERS.add(DateTimeFormatter.ISO_LOCAL_DATE.withZone(ZoneId.systemDefault()));
+        //2018/05/31
+        DATE_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        //2012/09/11 11:30
+        DATE_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         //2012-09-11 11:30:00
-        DATE_FORMATTERS.add(new DateTimeFormatterBuilder()
-                .parseCaseInsensitive()
-                .append(DateTimeFormatter.ISO_LOCAL_DATE)
-                .appendLiteral(" ")
-                .appendValue(ChronoField.HOUR_OF_DAY)
-                .appendLiteral(":")
-                .appendText(ChronoField.MINUTE_OF_HOUR)
-                .appendLiteral(":")
-                .appendText(ChronoField.SECOND_OF_MINUTE)
-                .toFormatter());
+        DATE_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
     }
 
     // ISO_8601
@@ -105,20 +91,6 @@ public class DateTimeHelper {
         }
 
         return null;
-    }
-    public static LocalDate parseDate(String date) {
-        Objects.requireNonNull(date, "date");
-                // equals ISO_LOCAL_DATE
-                if (formatter.equals(DATE_FORMATTERS.get(2))) {
-                    LocalDate localDate = LocalDate.parse(date, formatter);
-
-                    return localDate.atStartOfDay();
-                } else {
-                    return LocalDateTime.parse(date, formatter);
-                }
-            } catch (java.time.format.DateTimeParseException ignored) {
-            }
-
     }
 
     public static Date createDate(int year, int month, int day) {
