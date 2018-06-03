@@ -1,52 +1,55 @@
 
 
-# An object with an ID.
+# 存在ID的对象
 interface Node {
   # ID of the object.
   id: ID!
 }
 
 
-# Represents an error in the input of a mutation.
+# 更新修改中发生错误返回的一个错误信息对象
 type UserError {
-  # Path to input field which caused the error.
+  # 返回哪些字段造成了错误
   field: [String!]
 
-  # The error message.
+  # 错误信息，目前ok代码无错误
   message: String!
 }
 
-# Represents a generic custom attribute.
+# 代表一个普通的键值对
 type Attribute {
-  # Key or name of the attribute.
+  # 属性的名称/键
   key: String!
 
-  # Value of the attribute.
+  # 属性值
   value: String
 }
 
-# Specifies the input fields required for an attribute.
+# 用于更新一个属性
 input AttributeInput {
+  # 属性的名称/键
   key: String!
+
+  # 属性值
   value: String!
 }
 
 
-# The part of the image that should remain after cropping.
+# 图片裁剪应保留的部分
 enum CropRegion {
-  # Keep the center of the image
+  # 保留中间部分
   CENTER
 
-  # Keep the top of the image
+  # 保留中间部分
   TOP
 
-  # Keep the bottom of the image
+  # 保留底部部分
   BOTTOM
 
-  # Keep the left of the image
+  # 保留左边部分
   LEFT
 
-  # Keep the right of the image
+  #保留右边部分
   RIGHT
 }
 
@@ -467,26 +470,26 @@ enum CurrencyCode {
   ZMW
 }
 
-# Units of measurements for weight.
+# 重量的测量单位。
 enum WeightUnit {
-  # 1 equals 1000 grams
+  # 千米
   KILOGRAMS
 
-  # Metric system unit of mass
+  # 克，公制单位
   GRAMS
 
-  # 1 equals 16 ounces
+  # 1磅=16盎司
   POUNDS
 
-  # Imperial system unit of mass
+  # 盎司，英制单位
   OUNCES
 }
 
-# A monetary value string.
+# 货币字符串.
 scalar Money
 
-# Date implementation
+# 完整时间
 scalar DateTime
 
-# URL implementation
+# 完整url地址
 scalar URL
