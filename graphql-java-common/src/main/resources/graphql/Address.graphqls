@@ -1,65 +1,65 @@
-# Specifies the fields accepted to create or update a address.
+# 用于创建更新地址信息字段
 input AddressInput {
-  # Address line 1 (Street address/PO Box/Company name).
+  # 地址第一行 （街道地址/邮政信箱/公司名称）
   address1: String
 
-  # Address line 2 (Apartment/Suite/Unit/Building).
+  # 地址第二行 (公寓/套房/单位/建筑物）.
   address2: String
 
-  # City/District/Suburb/Town/Village.
+  # 市/区/郊区/城镇/村，区/郊区/城镇/村为省会直属
   city: String
 
+  # 城市码
   cityCode:String
 
-  # Company/Organization/Government.
+  # 公司/机构/政府,工作机构.
   company: String
 
-  # State/County/Province/Region.
+  # 州/县/省/地区
   country: String
 
+  # 城镇/乡
   town:String
+
+  # 城镇/乡码
   townCode:String
 
+  # 村
   village:String
+  # 村码
   villageCode:String
-  # Two-letter country code.
-  #
-  # For example, US.
+
+  # 双字母国家代码，例：us
   countryCode: String
 
-  # First name of the customer.
+  # 名，中文中为姓
   firstName: String
-  #formatted(withName: Boolean = false, withCompany: Boolean = true): [String!]!
 
-  # Comma-separated list of city, province, and country.
+  # 用逗号分隔的国家，省份和城市列表，例：中国，四川，成都
   formattedArea: String
 
-  # Last name of the customer.
+  # 姓，中文中为名
   lastName: String
 
-  # Latitude coordinate of the customer address.
+  # 纬度
   latitude: Float
 
-  # Longitude coordinate of the customer address.
+  # 经度
   longitude: Float
 
-  # Name of the customer, based on first name + last name.
+  # 姓名
   name: String
 
-  # Unique phone number for the customer.
-  #
-  # Formatted using E.164 standard. For example, _+16135551111_.
+  # 唯一电话
   phone: String
 
-  # State/County/Province/Region.
+  # 省份
   province: String
 
-  # Two-letter province or state code.
-  #
-  # For example, ON.
+  # 双字母州、省代码，例：on
   provinceCode: String
 
-  # Zip/Postal Code.
+  # 邮编
   zip: String
 }
 
@@ -79,71 +79,71 @@ type AddressEdge {
   node: Address!
 }
 
-# Represents a mailing address for customers and shipping.
+# 用于配送的邮寄地址
 type Address implements Node {
-  # Globally unique identifier.
+  # 全局ID
   id: ID!
 
-  # Address line 1 (Street address/PO Box/Company name).
+  # 地址第一行 （街道地址/邮政信箱/公司名称）
   address1: String
 
-  # Address line 2 (Apartment/Suite/Unit/Building).
+  # 地址第二行 (公寓/套房/单位/建筑物）.
   address2: String
 
-  # City/District/Suburb/Town/Village.
+  # 市/区/郊区/城镇/村，区/郊区/城镇/村为省会直属
   city: String
-  cityCode: String
 
-  town:String
-  townCode:String
+  # 城市码
+  cityCode:String
 
-  village:String
-  villageCode:String
-
-  # Company/Organization/Government.
+  # 公司/机构/政府,工作机构.
   company: String
 
-  # State/County/Province/Region.
+  # 州/县/省/地区
   country: String
 
-  # Two-letter country code.
-  #
-  # For example, US.
+  # 城镇/乡
+  town:String
+
+  # 城镇/乡码
+  townCode:String
+
+  # 村
+  village:String
+  # 村码
+  villageCode:String
+
+  # 双字母国家代码，例：us
   countryCode: String
 
-  # First name of the customer.
+  # 名，中文中为姓
   firstName: String
-  #formatted(withName: Boolean = false, withCompany: Boolean = true): [String!]!
 
-  # Comma-separated list of city, province, and country.
+  # 用逗号分隔的国家，省份和城市列表，例：中国，四川，成都
   formattedArea: String
 
-  # Last name of the customer.
+  # 姓，中文中为名
   lastName: String
 
-  # Latitude coordinate of the customer address.
+  # 纬度
   latitude: Float
 
-  # Longitude coordinate of the customer address.
+  # 经度
   longitude: Float
 
-  # Name of the customer, based on first name + last name.
+  # 姓名
   name: String
 
-  # Unique phone number for the customer.
-  #
-  # Formatted using E.164 standard. For example, _+16135551111_.
+  # 唯一电话
   phone: String
 
-  # State/County/Province/Region.
+  # 省份
   province: String
 
-  # Two-letter province or state code.
-  #
-  # For example, ON.
+  # 双字母州、省代码，例：on
   provinceCode: String
 
-  # Zip/Postal Code.
+  # 邮编
   zip: String
 }
 

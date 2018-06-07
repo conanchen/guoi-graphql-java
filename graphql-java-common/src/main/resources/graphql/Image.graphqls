@@ -15,7 +15,7 @@ type ImageEdge {
   node: Image!
 }
 
-# Represents an image resource.
+# 代表一个图片资源
 type Image  implements Node{
   # A unique identifier for the image.
   id: ID!
@@ -27,11 +27,15 @@ type Image  implements Node{
   src: URL!
 }
 
-
+# 用于图片变动
 input ImageInput {
-  # A word or phrase to share the nature or contents of an image.
+  # 图片ID，用于图片集中处理时使用
+  # 当不存在时自动生成UUID值作为ID值
+  id: ID
+
+  # 用于分享图像的内容的单词或短语，可用于iamge标签的alt属性
   altText: String
 
-  # The location of the image as a URL.
+  # 图片url地址
   src: URL!
 }

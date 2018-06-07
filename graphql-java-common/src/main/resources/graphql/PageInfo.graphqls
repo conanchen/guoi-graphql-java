@@ -1,15 +1,15 @@
 
-# Information about pagination in a connection.
+# 有关连接分页的信息
 type PageInfo {
-  # When paginating forwards, the cursor to continue.
+  # 当继续向上分页时,游标的开始位置.
   endCursor: String
 
-  # When paginating forwards, are there more items?
+  # 当继续向上分页，判断是否还有下一页数据?
   hasNextPage: Boolean!
 
-  # When paginating backwards, are there more items?
+  # 当继续向下分页, 判断是否还有上一页数据?
   hasPreviousPage: Boolean!
 
-  # When paginating backwards, the cursor to continue.
+  # 当继续向下分页时, 游标的开始位置.
   startCursor: String
 }
