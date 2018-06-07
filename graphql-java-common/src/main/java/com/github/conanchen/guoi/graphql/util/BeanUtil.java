@@ -56,6 +56,10 @@ public class BeanUtil {
      */
     public static <T> T toGrpc(Object srcBean,Class<T> grpcCls) {
         try {
+            if(null == srcBean){
+//                getDefaultInstance
+                return (T)grpcCls.getMethod("getDefaultInstance").invoke(null);
+            }
             Class cls = srcBean.getClass();
             Object grpcB = grpcCls.getMethod("newBuilder").invoke(null);
 
