@@ -18,8 +18,14 @@ dependencies {
 
     compile "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
 
+    compileOnly "io.grpc:grpc-services:${grpcVersion}"
+
     // lombok
     compileOnly("org.projectlombok:lombok:$LOMBOK_VERSION")
+
+    testCompileOnly('com.github.conanchen.guoi-micro-apis:shopie-order-grpc-java:master-SNAPSHOT')
+    // https://mvnrepository.com/artifact/junit/junit
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 //dependencyManagement {

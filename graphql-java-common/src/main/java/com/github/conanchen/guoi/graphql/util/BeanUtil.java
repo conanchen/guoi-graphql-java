@@ -185,7 +185,7 @@ public class BeanUtil {
                                     for (Method setMethod : clsMethods) {
                                         if (setMethod.getName().equals(setMethodName)) {
 
-                                            Integer cnt = (Integer) cntMethod.invoke(grpcBean, null);
+                                            Integer cnt = (Integer) cntMethod.invoke(grpcBean, new Object[] {});
                                             if (null != cnt) {
                                                 List list = new ArrayList();
                                                 for (int i = 0; i < cnt; i++) {
