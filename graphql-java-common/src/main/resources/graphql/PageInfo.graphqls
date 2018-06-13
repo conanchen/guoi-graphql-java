@@ -12,4 +12,6 @@ type PageInfo {
 
   # 当继续向下分页时, 游标的开始位置.
   startCursor: String
+
+  totalCount:Int
 }

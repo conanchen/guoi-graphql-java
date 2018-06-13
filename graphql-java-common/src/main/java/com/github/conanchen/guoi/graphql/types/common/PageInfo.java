@@ -1,5 +1,8 @@
 package com.github.conanchen.guoi.graphql.types.common;
 
+import lombok.Builder;
+import lombok.Getter;
+
 //# Information about pagination in a connection.
 //types PageInfo {
 //        # When paginating forwards, the cursor to continue.
@@ -14,6 +17,8 @@ package com.github.conanchen.guoi.graphql.types.common;
 //        # When paginating backwards, the cursor to continue.
 //        startCursor: String
 //}
+@Builder
+@Getter
 public class PageInfo {
     //        # When paginating forwards, the cursor to continue.
     private final String endCursor;//        endCursor: String
@@ -24,10 +29,6 @@ public class PageInfo {
     //        # When paginating backwards, the cursor to continue.
     private final String startCursor;//        startCursor: String
 
-    public PageInfo(String endCursor, Boolean hasNextPage, Boolean hasPreviousPage, String startCursor) {
-        this.endCursor = endCursor;
-        this.hasNextPage = hasNextPage;
-        this.hasPreviousPage = hasPreviousPage;
-        this.startCursor = startCursor;
-    }
+    private Integer totalCount;
+
 }
