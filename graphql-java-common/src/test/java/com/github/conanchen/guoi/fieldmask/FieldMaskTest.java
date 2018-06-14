@@ -32,7 +32,8 @@ public class FieldMaskTest {
                 "\t\t\t\"latitude\": 22.95849076,\n" +
                 "\t\t\t\"longitude\": 113.98106657\n" +
                 "\t\t},\n" +
-                "\t\t\"paymentChannel\": \"CASH\"\n" +
+                "\t\t\"paymentChannel\": \"CASH\",\n" +
+                "\t\t\"receiverId\": \"11111\"\n" +
                 "\t}";
         Map<String, Object> input = gson.fromJson(json,new com.google.common.reflect.TypeToken<Map<String, Object>>() {}.getType());
         System.out.println(input.toString());

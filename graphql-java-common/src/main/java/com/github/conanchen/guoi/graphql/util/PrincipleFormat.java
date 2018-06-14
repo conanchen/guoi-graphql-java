@@ -51,7 +51,7 @@ public enum PrincipleFormat {
                         ? s
                         : s.equals(GENERIC_ID)
                         ? GRPC_NMAE
-                        : s.startsWith(GENERIC_ID)
+                        : s.endsWith(ENDWITH_GENERIC_ID)
                         ? GRPC_NMAE + "_" + s.substring(0, s.length() - 2)
                         : s;
             }

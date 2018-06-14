@@ -46,7 +46,6 @@ public final class GqlInputConverter {
             return (T)builder.build();
         }
         Message.Builder subBuilder;
-        Descriptor descriptor;
         if ("".equals(prefix)) {
             subBuilder = builder;
         } else {
@@ -108,7 +107,7 @@ public final class GqlInputConverter {
                     continue;
                 }
             }
-            builder.setField(field, getValueForField(field, newPrefix, input.get(fieldName), builder, fieldMaskBuilder));
+            builder.setField(field, getValueForField(field, newPrefix, input.get(entry.getKey()), builder, fieldMaskBuilder));
         }
     }
 
