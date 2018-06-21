@@ -151,7 +151,7 @@ public final class GqlInputConverter {
         } else if (field.getType() == FLOAT) {
             value = Float.valueOf(value.toString());
         } else if (field.getType() == ENUM) {
-            value = field.getEnumType().findValueByName(value.toString());
+            value = field.getEnumType().findValueByName(value.toString().toUpperCase());
         } else if (builder.getField(field).getClass().getName().equals(Timestamp.class.getName())
                 && value instanceof Date) {
             value = Timestamps.fromMillis(((Date) value).getTime());
