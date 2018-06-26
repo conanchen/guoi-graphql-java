@@ -108,7 +108,7 @@ public final class GqlInputConverter {
                     continue;
                 }
             }
-            if (entry.getValue() == null || StringUtils.isEmpty(entry.getValue())){
+            if (entry.getValue() == null){
                 continue;
             }
             builder.setField(field, getValueForField(field, newPrefix, entry.getValue(), builder, fieldMaskBuilder));
