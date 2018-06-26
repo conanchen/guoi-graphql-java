@@ -9,6 +9,7 @@ import com.google.protobuf.Message;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -107,7 +108,7 @@ public final class GqlInputConverter {
                     continue;
                 }
             }
-            if (entry.getValue() == null){
+            if (entry.getValue() == null || StringUtils.isEmpty(entry.getValue())){
                 continue;
             }
             builder.setField(field, getValueForField(field, newPrefix, entry.getValue(), builder, fieldMaskBuilder));
