@@ -9,7 +9,7 @@ import com.google.protobuf.Message;
  * email hilin2333@gmail.com
  * date 2018/6/27 4:13 PM
  */
-public class FieldMaskUtil {
+public class GrpcFieldMaskUtil {
 
     /**
      * 获取grpc定义的参数
@@ -17,7 +17,7 @@ public class FieldMaskUtil {
      * @param fieldNumber grpc字段编号
      * @return 返回grpc字段名称
      */
-    public String getFiledName(Message message, int fieldNumber) {
+    public static String getFiledName(Message message, int fieldNumber) {
         return message.getDescriptorForType().findFieldByNumber(fieldNumber).getName();
     }
 
@@ -27,7 +27,7 @@ public class FieldMaskUtil {
      * @param fieldNumber grpc字段编号
      * @return 返回grpc字段名称
      */
-    public String getFiledName(Descriptors.Descriptor descriptor, int fieldNumber) {
+    public static String getFiledName(Descriptors.Descriptor descriptor, int fieldNumber) {
         return descriptor.findFieldByNumber(fieldNumber).getName();
     }
 }
