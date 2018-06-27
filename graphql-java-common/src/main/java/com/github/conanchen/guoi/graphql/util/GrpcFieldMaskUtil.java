@@ -17,7 +17,7 @@ public class GrpcFieldMaskUtil {
      * @param fieldNumber grpc字段编号
      * @return 返回grpc字段名称
      */
-    public static String getFiledName(Message message, int fieldNumber) {
+    public static String getFieldName(Message message, int fieldNumber) {
         return message.getDescriptorForType().findFieldByNumber(fieldNumber).getName();
     }
 
@@ -27,7 +27,7 @@ public class GrpcFieldMaskUtil {
      * @param fieldNumber grpc字段编号
      * @return 返回grpc字段名称
      */
-    public static String getFiledName(Descriptors.Descriptor descriptor, int fieldNumber) {
+    public static String getFieldName(Descriptors.Descriptor descriptor, int fieldNumber) {
         return descriptor.findFieldByNumber(fieldNumber).getName();
     }
 }
