@@ -1,10 +1,14 @@
 package com.github.conanchen.guoi.graphql.types.address;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
 public class AddressInput {
     //
 //            # Address line 1 (Street address/PO Box/Company name).
