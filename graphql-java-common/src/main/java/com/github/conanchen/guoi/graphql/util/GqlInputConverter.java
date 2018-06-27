@@ -9,7 +9,6 @@ import com.google.protobuf.Message;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,8 +67,14 @@ public final class GqlInputConverter {
     private static void convertInternal(String prefix, Message.Builder builder, Map<String, Object> input, FieldMask.Builder fieldMaskBuilder) {
         Descriptor descriptor = builder.getDescriptorForType();
         for (Map.Entry<String,Object> entry : input.entrySet()){
-            String fieldName = DEFAULT_CONVERTER.convert(entry.getKey());
-            FieldDescriptor field = descriptor.findFieldByName(fieldName);
+            FieldDescriptor field;
+            String fieldName;
+            if ((field = descriptor.findFieldByName(entry.getKey())) == null ){
+                fieldName = DEFAULT_CONVERTER.convert(entry.getKey());
+                field = descriptor.findFieldByName(fieldName);
+            }else{
+                fieldName = entry.getKey();
+            }
             if (field == null){
                 continue;
             }
