@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author hai
- * description
+ * description grpc返回状态工具类
  * email hilin2333@gmail.com
  * date 2018/6/28 9:07 AM
  */
