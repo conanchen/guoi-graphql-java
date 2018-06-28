@@ -1,6 +1,9 @@
 buildscript {
     apply from: "$rootDir/blessedDeps.gradle"
     repositories {
+        mavenLocal()
+        maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        jcenter()
         maven { url "http://192.168.1.250:8081/nexus/content/repositories/central" }
     }
     dependencies {
@@ -14,6 +17,7 @@ allprojects {
     apply plugin: 'com.bmuschko.nexus'
     group = 'com.github.conanchen'
     version = 'master-SNAPSHOT'
+    apply plugin: 'maven-publish'
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -39,6 +43,9 @@ allprojects {
         snapshotRepositoryUrl = 'http://192.168.1.250:8081/nexus/content/repositories/snapshots/'
     }
     repositories {
+        //mavenLocal()
+        maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        jcenter()
         maven { url "http://192.168.1.250:8081/nexus/content/repositories/central" }
         maven { url "http://192.168.1.250:8081/nexus/content/repositories/releases" }
         maven { url "http://192.168.1.250:8081/nexus/content/repositories/snapshots" }

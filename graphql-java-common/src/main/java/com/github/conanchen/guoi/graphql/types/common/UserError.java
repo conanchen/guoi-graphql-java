@@ -17,4 +17,20 @@ public class UserError {
         this.field = field;
         this.message = message;
     }
+
+    public List<String> getField() {
+        return field;
+    }
+
+    public void setField(List<String> field) {
+        this.field = field;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
