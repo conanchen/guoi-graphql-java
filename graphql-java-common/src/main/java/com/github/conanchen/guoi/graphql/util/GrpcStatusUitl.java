@@ -74,6 +74,7 @@ public class GrpcStatusUitl {
             userError.setField(fields);
         }
         userError.setMessage(status.getMessage());
+        userErrors.add(userError);
         return userErrors;
     }
 }
