@@ -57,7 +57,7 @@ public class GrpcStatusUitl {
         }
         List<UserError> userErrors = new ArrayList<>(1);
         UserError userError = new UserError();
-        if (CollectionUtils.isEmpty(status.getDetailsList())) {
+        if (!CollectionUtils.isEmpty(status.getDetailsList())) {
             List<String> fields = new ArrayList<>(status.getDetailsList().size());
             for (com.google.protobuf.Any any : status.getDetailsList()) {
                 try {
