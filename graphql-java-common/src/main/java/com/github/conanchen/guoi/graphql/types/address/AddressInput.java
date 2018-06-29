@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class AddressInput {
+    // address id
+    private String id;
     //
 //            # Address line 1 (Street address/PO Box/Company name).
     private String address1;//    address1: String

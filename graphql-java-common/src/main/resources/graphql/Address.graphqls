@@ -1,5 +1,7 @@
 # 用于创建更新地址信息字段
 input AddressInput {
+  # 地址ID
+  id: ID
   # 地址第一行 （街道地址/邮政信箱/公司名称）
   address1: String
 
