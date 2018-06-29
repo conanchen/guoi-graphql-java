@@ -58,7 +58,7 @@ public class DateTimeHelper {
     public static LocalDateTime toLocalDateTime(Date date) {
         Objects.requireNonNull(date, "date");
 
-        return date.toInstant().atZone(ZoneOffset.UTC).toLocalDateTime();
+        return date.toInstant().atZone(ZoneOffset.systemDefault()).toLocalDateTime();
     }
 
     public static Date toDate(LocalDate date) {
@@ -70,7 +70,7 @@ public class DateTimeHelper {
     public static Date toDate(LocalDateTime dateTime) {
         Objects.requireNonNull(dateTime, "dateTime");
 
-        return Date.from(dateTime.atZone(ZoneOffset.UTC).toInstant());
+        return Date.from(dateTime.atZone(ZoneOffset.systemDefault()).toInstant());
     }
 
     public static LocalDateTime parseDate(String date) {
