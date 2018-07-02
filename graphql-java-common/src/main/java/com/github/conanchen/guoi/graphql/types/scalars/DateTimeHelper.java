@@ -34,7 +34,7 @@ public class DateTimeHelper {
     public static String toISOString(LocalDateTime dateTime) {
         Objects.requireNonNull(dateTime, "dateTime");
 
-        return DateTimeFormatter.ISO_INSTANT.format(ZonedDateTime.of(dateTime, ZoneOffset.systemDefault()));
+        return DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(ZonedDateTime.of(dateTime, ZoneOffset.systemDefault()));
     }
 
     public static String toISOString(LocalDate date) {
