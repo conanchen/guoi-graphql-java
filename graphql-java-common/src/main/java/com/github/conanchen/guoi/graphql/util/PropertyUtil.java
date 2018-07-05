@@ -10,7 +10,6 @@ import java.lang.reflect.Method;
 public class PropertyUtil {
     private static final Logger logger = LoggerFactory.getLogger(PropertyUtil.class);
     private static final String SET_PREFIX = "set";
-    private static final String IS_PREFIX = "is";
     private static final String GET_PREFIX = "get";
 
     public static PropertyDescriptor getPropertyDescriptor(Class<?> clazz, String propertyName) {//根据需求，定制 自己的get和set方法

@@ -1,7 +1,5 @@
 package com.github.conanchen.guoi.graphql.util;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.protobuf.Descriptors.Descriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Message;
@@ -10,18 +8,21 @@ import com.google.protobuf.util.Timestamps;
 import lombok.extern.slf4j.Slf4j;
 
 import java.beans.PropertyDescriptor;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
 
 /**
  * @author hai
- * description 该工具类用于input转grpc及封装fieldMask
+ * description 普通类转grpc
  * email hilin2333@gmail.com
  * date 2018/5/16 6:46 AM
  */
 @Slf4j
 public final class BeanToGrpcConverter {
+    private static final ZoneOffset localZoneOffset = OffsetDateTime.now().getOffset();
     public static final com.google.common.base.Converter<String, String> DEFAULT_CONVERTER = PrincipleFormat.NAME.converterTo(PrincipleFormat.ID);
 
     public static <T extends Message> T toGrpc(Message.Builder builder, Object object,com.google.common.base.Converter<String, String> converter) {
@@ -71,7 +72,11 @@ public final class BeanToGrpcConverter {
             // date 转 timestamp
             if (parentBuilder.getField(field).getClass().getName().equals(Timestamp.class.getName())
                     && value instanceof Date) {
-                return Timestamps.fromMillis(((Date) value).getTime());
+                if (value instanceof Date) {
+                    return Timestamps.fromMillis(((Date) value).getTime());
+                }else if (value instanceof LocalDateTime){
+                    return Timestamps.fromMillis(((LocalDateTime) value).toInstant(localZoneOffset).toEpochMilli());
+                }
             }
             Message.Builder fieldBuilder = parentBuilder.newBuilderForField(field);
             return convert(fieldBuilder, value,converter);

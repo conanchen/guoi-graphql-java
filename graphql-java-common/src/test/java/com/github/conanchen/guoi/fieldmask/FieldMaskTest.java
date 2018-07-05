@@ -1,13 +1,20 @@
 package com.github.conanchen.guoi.fieldmask;
 
 import com.github.conanchen.guoi.cloud.shopie.order.grpc.Checkout;
+import com.github.conanchen.guoi.cloud.shopie.order.grpc.UpdateCheckoutRequest;
+import com.github.conanchen.guoi.graphql.types.scalars.DateTimeHelper;
 import com.github.conanchen.guoi.graphql.util.BeanToGrpcConverter;
+import com.github.conanchen.guoi.graphql.util.BeanToGrpcRequestUtil;
 import com.github.conanchen.guoi.graphql.util.FieldMaskMergeUtil;
 import com.github.conanchen.guoi.graphql.util.GqlInputConverter;
 import com.google.protobuf.FieldMask;
 import org.junit.Test;
 
+import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.Map;
+
+import static com.github.conanchen.guoi.graphql.util.BeanToGrpcRequestUtil.DEFAULT_CONVERTER;
 
 /**
  * @author hai
@@ -33,13 +40,14 @@ public class FieldMaskTest {
                 "\t\t\t\"longitude\": 113.98106657\n" +
                 "\t\t},\n" +
                 "\t\t\"paymentChannel\": \"CASH\",\n" +
-                "\t\t\"receiverId\": \"11111\"\n" +
+                "\t\t\"receiverId\": \"11111\",\n" +
+                "\t\t\"org8nId\": \"11111\"\n" +
                 "\t}";
         Map<String, Object> input = gson.fromJson(json,new com.google.common.reflect.TypeToken<Map<String, Object>>() {}.getType());
         System.out.println(input.toString());
         System.out.println("--------input 转 grpc开始----------");
         com.github.conanchen.guoi.cloud.shopie.order.grpc.UpdateCheckoutRequest request = GqlInputConverter.convert("checkout",
-                com.github.conanchen.guoi.cloud.shopie.order.grpc.UpdateCheckoutRequest.newBuilder(),
+                UpdateCheckoutRequest.newBuilder(),
                 input,
                 FieldMask.newBuilder());
         System.out.println(request.toString());
@@ -47,11 +55,19 @@ public class FieldMaskTest {
         System.out.println("--------input 转 grpc结束----------");
         System.out.println("--------grpc filed mask 转 db bean 开始----------");
         CheckoutMongo newCheckout = new FieldMaskMergeUtil<CheckoutMongo>(request.getFieldMask()).merge(request, "checkout", CheckoutMongo.class);
-        System.out.println(newCheckout.toString());
+        System.out.println("newCheckout:\n" + newCheckout.toString());
         System.out.println("--------grpc filed mask 转 db bean 结束----------");
         System.out.println("--------db bean 转 grpc 开始----------");
         Checkout checkout = BeanToGrpcConverter.toGrpc(Checkout.newBuilder(),newCheckout);
         System.out.println(checkout.toString());
         System.out.println("--------db bean 转 grpc 结束----------");
+        System.out.println(DateTimeHelper.toISOString(new Date()));
+        System.out.println("--------bean 转 grpc 带field mask 开始----------");
+        FieldMask.Builder fieldMaskBuilder = FieldMask.newBuilder();
+        UpdateCheckoutRequest requestCheckout = BeanToGrpcRequestUtil.toGrpc("checkout",newCheckout,
+                UpdateCheckoutRequest.newBuilder(),
+                fieldMaskBuilder,DEFAULT_CONVERTER);
+        System.out.println(requestCheckout.toString());
+        System.out.println("--------bean 转 grpc 带field mask 结束----------");
     }
 }
