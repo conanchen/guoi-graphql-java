@@ -48,10 +48,9 @@ public final class BeanToGrpcRequestUtil {
         }
         if (prefix.indexOf(".") < 0 && (!"".equals(prefix) || prefix != null)){
             Descriptors.Descriptor descriptor = builder.getDescriptorForType();
-            Message.Builder subBulder = builder;
             FieldDescriptor fieldDescriptor = descriptor.findFieldByName(prefix);
-            subBulder = builder.newBuilderForField(fieldDescriptor);
-            Message subMessage = convertInternal(prefix,object,subBulder,fieldMaskBuilder,converter);
+            Message.Builder subBuilder = builder.newBuilderForField(fieldDescriptor);
+            Message subMessage = convertInternal(prefix,object,subBuilder,fieldMaskBuilder,converter);
             builder.setField(fieldDescriptor,subMessage);
             builder.build();
         }else{
