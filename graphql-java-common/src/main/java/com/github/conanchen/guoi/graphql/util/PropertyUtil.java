@@ -73,6 +73,18 @@ public class PropertyUtil {
         }
         return value;// 返回值
     }
+
+    public static Object getProperty(Object obj,Class clazz, String propertyName) {
+        String methodEnd = propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
+        Object value = null;
+        try {
+            Method getMethod = clazz.getDeclaredMethod(GET_PREFIX + methodEnd, new Class[] {});
+            value = getMethod.invoke(obj, new Object[] {});// 调用方法获取方法的返回值
+        } catch (Exception e) {
+            //e.printStackTrace();
+        }
+        return value;// 返回值
+    }
     public static Object getProperty(Object obj,PropertyDescriptor pd) {
         Method getMethod = pd.getReadMethod();// 从属性描述器中获取 get 方法
         Object value = null;

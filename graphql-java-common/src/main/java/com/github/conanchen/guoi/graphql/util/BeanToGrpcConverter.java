@@ -45,12 +45,13 @@ public final class BeanToGrpcConverter {
                 PropertyDescriptor propertyDescriptor = PropertyUtil.getPropertyDescriptor(object.getClass(), fieldName);
                 Object o;
                 if (propertyDescriptor == null) {
-                    if (object.getClass().getSuperclass().isPrimitive()
+                    if (object.getClass().getSuperclass().equals(Class.class)
+                            || object.getClass().getSuperclass().isPrimitive()
                             || BeanUtil.isWrapClass(object.getClass().getSuperclass())
                             || object.getClass().getSuperclass().getClassLoader() == null){
                         continue;
                     } else {
-                        o = PropertyUtil.getProperty(object.getClass().getSuperclass(), fieldName);
+                        o = PropertyUtil.getProperty(object,object.getClass().getSuperclass(), fieldName);
                     }
                 }else{
                     o = PropertyUtil.getProperty(object, propertyDescriptor);
@@ -78,8 +79,7 @@ public final class BeanToGrpcConverter {
             Message.Builder parentBuilder, FieldDescriptor field, Object value,com.google.common.base.Converter<String, String> converter) {
         if (field.getType() == FieldDescriptor.Type.MESSAGE) {
             // date 转 timestamp
-            if (parentBuilder.getField(field).getClass().getName().equals(Timestamp.class.getName())
-                    && value instanceof Date) {
+            if (parentBuilder.getField(field).getClass().getName().equals(Timestamp.class.getName())) {
                 if (value instanceof Date) {
                     return Timestamps.fromMillis(((Date) value).getTime());
                 }else if (value instanceof LocalDateTime){
