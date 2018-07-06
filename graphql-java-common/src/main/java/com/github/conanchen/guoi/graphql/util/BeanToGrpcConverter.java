@@ -45,7 +45,7 @@ public final class BeanToGrpcConverter {
                 PropertyDescriptor propertyDescriptor = PropertyUtil.getPropertyDescriptor(object.getClass(), fieldName);
                 Object o;
                 if (propertyDescriptor == null) {
-                    if ((propertyDescriptor = PropertyUtil.getPropertyDescriptor(object.getClass().getSuperclass(), fieldName)) == null){
+                    if (PropertyUtil.getProperty(object.getClass().getSuperclass(), fieldName) == null){
                         continue;
                     } else {
                         o = PropertyUtil.getProperty(object.getClass().getSuperclass(), propertyDescriptor);
