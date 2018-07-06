@@ -163,8 +163,10 @@ public final class GqlInputConverter {
         } else if (builder.getField(field).getClass().getName().equals(Timestamp.class.getName())
                 && value instanceof Date) {
             value = Timestamps.fromMillis(((Date) value).getTime());
-        } else if (value instanceof Image && field.getType() == STRING){
-            value = ((Image) value).getSrc();
+        } else if (value instanceof Map && field.getType() == STRING){
+            if(((Map) value).keySet().contains("src")){
+                value = ((Map) value).get("src");
+            }
         }
         fieldMaskBuilder.addPaths(lastLevel);
         return value;
