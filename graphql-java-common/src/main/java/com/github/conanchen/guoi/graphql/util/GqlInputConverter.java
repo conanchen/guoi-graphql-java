@@ -1,5 +1,6 @@
 package com.github.conanchen.guoi.graphql.util;
 
+import com.github.conanchen.guoi.graphql.types.image.Image;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.protobuf.Descriptors.Descriptor;
@@ -68,11 +69,9 @@ public final class GqlInputConverter {
         Descriptor descriptor = builder.getDescriptorForType();
         for (Map.Entry<String,Object> entry : input.entrySet()){
             FieldDescriptor field;
-            String fieldName;
-            if ((field = descriptor.findFieldByName(entry.getKey())) == null ){
-                fieldName = DEFAULT_CONVERTER.convert(entry.getKey());
-                field = descriptor.findFieldByName(fieldName);
-            }else{
+            String fieldName = DEFAULT_CONVERTER.convert(entry.getKey());
+            if ((field = descriptor.findFieldByName(fieldName)) == null ){
+                field = descriptor.findFieldByName(entry.getKey());
                 fieldName = entry.getKey();
             }
             if (field == null){
@@ -164,6 +163,8 @@ public final class GqlInputConverter {
         } else if (builder.getField(field).getClass().getName().equals(Timestamp.class.getName())
                 && value instanceof Date) {
             value = Timestamps.fromMillis(((Date) value).getTime());
+        } else if (value instanceof Image && field.getType() == STRING){
+            value = ((Image) value).getSrc();
         }
         fieldMaskBuilder.addPaths(lastLevel);
         return value;
