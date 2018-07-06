@@ -52,7 +52,6 @@ public final class BeanToGrpcRequestUtil {
             Message.Builder subBuilder = builder.newBuilderForField(fieldDescriptor);
             Message subMessage = convertInternal(prefix,object,subBuilder,fieldMaskBuilder,converter);
             builder.setField(fieldDescriptor,subMessage);
-            builder.build();
         }else{
             convertInternal(prefix,object,builder,fieldMaskBuilder,converter);
         }
