@@ -63,10 +63,10 @@ public class PropertyUtil {
 
     public static Object getProperty(Object obj, String propertyName) {
         Class<?> clazz = obj.getClass();// 获取对象的类型
-        PropertyDescriptor pd = getPropertyDescriptor(clazz, propertyName);// 获取
-        Method getMethod = pd.getReadMethod();// 从属性描述器中获取 get 方法
+        String methodEnd = propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
         Object value = null;
         try {
+            Method getMethod = clazz.getDeclaredMethod(GET_PREFIX + methodEnd, new Class[] {});
             value = getMethod.invoke(clazz, new Object[] {});// 调用方法获取方法的返回值
         } catch (Exception e) {
             e.printStackTrace();
