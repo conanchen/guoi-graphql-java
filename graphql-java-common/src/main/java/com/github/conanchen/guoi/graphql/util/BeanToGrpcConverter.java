@@ -43,10 +43,16 @@ public final class BeanToGrpcConverter {
             for (FieldDescriptor field : descriptor.getFields()) {
                 String fieldName = converter == null ? field.getJsonName() : converter.convert(field.getJsonName());
                 PropertyDescriptor propertyDescriptor = PropertyUtil.getPropertyDescriptor(object.getClass(), fieldName);
+                Object o;
                 if (propertyDescriptor == null) {
-                    continue;
+                    if ((propertyDescriptor = PropertyUtil.getPropertyDescriptor(object.getClass().getSuperclass(), fieldName)) == null){
+                        continue;
+                    } else {
+                        o = PropertyUtil.getProperty(object.getClass().getSuperclass(), propertyDescriptor);
+                    }
+                }else{
+                    o = PropertyUtil.getProperty(object, propertyDescriptor);
                 }
-                Object o = PropertyUtil.getProperty(object, propertyDescriptor);
                 if (o == null) {
                     continue;
                 }
@@ -86,6 +92,8 @@ public final class BeanToGrpcConverter {
             switch (field.getType()) {
                 case FLOAT: // float is a special case
                     return Float.valueOf(value.toString());
+                case STRING:
+                    return value.toString();
                 default:
                     return value;
             }
