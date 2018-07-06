@@ -10,7 +10,6 @@ import com.github.conanchen.guoi.graphql.util.GqlInputConverter;
 import com.google.protobuf.FieldMask;
 import org.junit.Test;
 
-import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.Map;
 

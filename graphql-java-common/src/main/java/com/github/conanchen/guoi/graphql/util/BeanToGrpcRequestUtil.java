@@ -74,7 +74,7 @@ public final class BeanToGrpcRequestUtil {
                 String fieldName = converter == null ? field.getName() : converter.convert(field.getName());
                 FieldDescriptor fieldDescriptor = builder.getDescriptorForType().findFieldByName(fieldName);
                 // 如果是原始类
-                if (isJavaClass(field.getDeclaringClass())){
+                if (isWrapClass(field.getDeclaringClass())){
                     builder.setField(fieldDescriptor, buildValue(prefix,builder,fieldMaskBuilder, fieldDescriptor, o,converter));
                 }else{
                     if (fieldDescriptor.isRepeated() && field.getGenericType() instanceof GenericArrayType){
@@ -145,7 +145,11 @@ public final class BeanToGrpcRequestUtil {
         }
 
     }
-    public static boolean isJavaClass(Class<?> clz) {
-        return clz != null && clz.getClassLoader() == null;
+    public static boolean isWrapClass(Class clz) {
+        try {
+            return ((Class) clz.getField("TYPE").get(null)).isPrimitive();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
