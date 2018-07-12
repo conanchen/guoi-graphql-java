@@ -152,14 +152,15 @@ public class BeanUtil {
                                 for (Method clsMethod : clsMethods) {
                                     if (clsMethod.getName().equals(setMethodName)) {
 
-                                        if ((retCls.getName().startsWith("java") || retCls.getPackage() == null) && clsMethod.getParameterTypes()[0].isAssignableFrom(retCls)) {
+                                        if (retCls.getName().startsWith("java") || retCls.getPackage() == null) {
                                             clsMethod.invoke(bean, ret);
                                         } else {
 //                                            System.out.println(name + "    " + retCls.getName());
                                             if(ret instanceof Enum) {
                                                 Object val = ret.getClass().getMethod("name").invoke(ret);
 
-                                                clsMethod.invoke(bean, clsMethod.getParameterTypes()[0].getMethod("valueOf", String.class).invoke(null, val));   //执行set方法
+                                                clsMethod.invoke(bean, clsMethod.getParameterTypes()[0].getMethod("valueOf",String.class).invoke(null,val));   //执行set方法
+
                                             }else{
                                                 clsMethod.invoke(bean, fromGrpc(ret, clsMethod.getParameterTypes()[0]));
                                             }
