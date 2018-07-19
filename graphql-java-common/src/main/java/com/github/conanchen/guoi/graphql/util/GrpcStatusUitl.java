@@ -46,7 +46,7 @@ public class GrpcStatusUitl {
     public static com.google.rpc.Status ok(){
         return com.google.rpc.Status.newBuilder()
                 .setCode(Code.OK.getNumber())
-                .setMessage("access success")
+                .setMessage("ok")
                 .build();
     }
     public static List<UserError> statusToUserErrors(com.google.rpc.Status status){
