@@ -80,3 +80,18 @@ type Query {
 # GUOI Graphql API Design Guide
 - Refer to [graph.cool Graphql API](https://www.graph.cool/docs/reference/graphql-api/overview-abogasd0go)
 - Refer to [Customize GUOI Graphql API Design Guide](GUOI_GRAPHQL_API_DESIGN_GUIDE.md)
+# DateTime支持的时间格式
+```
+//2018-05-31T14:20:12.894Z
+DATE_FORMATTERS.add(DateTimeFormatter.ISO_INSTANT.withZone(ZoneId.systemDefault()));
+//2018-05-31T22:10:59.254
+DATE_FORMATTERS.add(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withZone(ZoneId.systemDefault()));
+//2018-05-31
+DATE_FORMATTERS.add(DateTimeFormatter.ISO_LOCAL_DATE.withZone(ZoneId.systemDefault()));
+//2018/05/31
+DATE_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+//2012/09/11 11:30
+DATE_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//2012-09-11 11:30:00
+DATE_FORMATTERS.add(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+```
