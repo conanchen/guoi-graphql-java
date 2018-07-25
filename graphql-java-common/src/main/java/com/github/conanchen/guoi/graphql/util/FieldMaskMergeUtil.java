@@ -190,9 +190,9 @@ public class FieldMaskMergeUtil<T> {
             }
             String mongoFieldName = converter == null ? field.getJsonName() : converter.convert(field.getJsonName());
             PropertyDescriptor pd = PropertyUtil.getPropertyDescriptor(t.getClass(),mongoFieldName);
-            //没有在GrpcFieldName annotation中找
+            //没有在父类中去找
             if (pd == null){
-
+                pd = PropertyUtil.getPropertyDescriptor(t.getClass().getSuperclass(),mongoFieldName);
             }
             //有子项
             if (!entry.getValue().children.isEmpty()) {
